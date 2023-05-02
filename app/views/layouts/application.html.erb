@@ -11,8 +11,11 @@
 
   <body>
     <header>
+    <%= link_to root_path do %>
+        <h1> Site do Leilão </h1>
+    <% end %>
       <nav>
-        <%= link_to 'Produtos', products_path %>
+        <%= link_to 'Produtos', products_path %> |
       </nav>
     </header>
     <main>

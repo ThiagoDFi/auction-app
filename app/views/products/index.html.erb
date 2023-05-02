@@ -1,15 +1,19 @@
 <h1>Lista de Produtos</h1>
+<div>
+  <%= link_to '+ Novo Produto', new_product_path %>
+</div>
 
-<%= link_to '+ Novo Produto', new_product_path %>
+</div>
+  <% if @products.any? %> 
 
-<% if @products.any? %>
+  <% @products.each do | product |%>
+    <div>
+      <%= link_to product.name, product %>
+    </div>
+  <% end %>
 
-<% @products.each do | product |%>
-  <%= product.name %>
-<% end %>
-
-<% else %>
-  <p>Não existem produtos cadastrados.</p>
-<% end %>
-
+  <% else %>
+    <p>Não existem produtos cadastrados.</p>
+  <% end %>
+</div>
 

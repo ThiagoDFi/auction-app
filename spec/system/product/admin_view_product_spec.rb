@@ -6,7 +6,7 @@ describe 'Admin acessa produtos' do
     #Arrange
     product = Product.create!(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
                               weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
-    
+    # allow(product).to receive(:photo).and_return('Hello.jpg')
 
     #Act
     visit root_path
@@ -25,5 +25,17 @@ describe 'Admin acessa produtos' do
 
     #Assert
     expect(page).to have_content "Não existem produtos cadastrados."
+  end
+  it 'e volta para tela inicial' do
+    #Arrange
+
+    #Act
+    visit root_path
+    click_on 'Produtos'
+    click_on 'Site do Leilão'
+
+    #Assert
+    expect(page).to have_content 'Site do Leilão'
+    expect(page).to have_link('Site do Leilão', href: root_path)
   end
 end
