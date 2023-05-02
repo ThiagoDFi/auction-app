@@ -11,6 +11,8 @@
   <dd><%= @product.dimension %></dd>
   <dt>Categoria: </dt>
   <dd><%= @product.category %></dd>
+  <dt>SKU: </dt>
+  <dd><%= @product.code %></dd>
   <% if @product.photo.attached? %>
   <dt>Foto: </dt>
   <dd><%= image_tag(@product.photo, style: "height: 120px;")%>

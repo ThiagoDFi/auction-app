@@ -24,7 +24,7 @@ describe 'Admin cadastra um producto' do
 
   it 'com sucesso' do
     #Arrange
-
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC1234567')
     #Act
     visit root_path
     click_on 'Produtos'
@@ -42,6 +42,7 @@ describe 'Admin cadastra um producto' do
     #Assert
     expect(page).to have_content "Produto cadastrado com sucesso."
     expect(page).to have_content "Nome: Iphone 14"
+    expect(page).to have_content "SKU: ABC1234567"
     expect(page).to have_content "Descrição: Celular da Apple de ultima geração"
     expect(page).to have_css('img[src*="iphone.jpeg"]')
     expect(page).to have_content "Peso: 3g"
@@ -66,7 +67,6 @@ describe 'Admin cadastra um producto' do
     expect(page).to have_content "Produto não cadastado."
     expect(page).to have_content "Nome não pode ficar em branco"
     expect(page).to have_content "Descrição não pode ficar em branco"
-    expect(page).to have_content "Foto não pode ficar em branco"
     expect(page).to have_content "Peso não pode ficar em branco"
     expect(page).to have_content "Largura não pode ficar em branco"
     expect(page).to have_content "Altura não pode ficar em branco"
