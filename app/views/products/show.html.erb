@@ -1,0 +1,19 @@
+<h1>Produto</h1>
+
+<dl>
+  <dt>Nome: </dt>
+  <dd><%= @product.name %></dd>
+  <dt>Descrição: </dt>
+  <dd><%= @product.description %></dd>
+  <dt>Peso: </dt>
+  <dd><%= @product.weight %>g</dd>
+  <dt>Dimensão: </dt>
+  <dd><%= @product.dimension %></dd>
+  <dt>Categoria: </dt>
+  <dd><%= @product.category %></dd>
+  <% if @product.photo.attached? %>
+  <dt>Foto: </dt>
+  <dd><%= image_tag(@product.photo, style: "height: 120px;")%>
+  <% end %>
+</dl>
+
