@@ -9,9 +9,7 @@ class Product < ApplicationRecord
 
   before_validation :generate_code
 
-  def dimension
-    "#{height}cm x #{width}cm x #{depth}cm"
-  end
+
 
   def generate_code
     self.code = SecureRandom.alphanumeric(10)

@@ -8,7 +8,7 @@
   <dt>Peso: </dt>
   <dd><%= @product.weight %>g</dd>
   <dt>Dimensão: </dt>
-  <dd><%= @product.dimension %></dd>
+  <dd><%= dimension(@product.height, @product.width, @product.depth) %></dd>
   <dt>Categoria: </dt>
   <dd><%= @product.category %></dd>
   <dt>SKU: </dt>

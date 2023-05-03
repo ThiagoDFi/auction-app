@@ -50,5 +50,17 @@ RSpec.describe User, type: :model do
       user = User.last
       expect(user.role).to eq 'admin'
     end
+    it 'CPF inválido retorna erro' do
+      #Arrange
+      user = User.new(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+      registry_code: '78451222457')
+
+      #Act
+      user.valid?
+      result = user.errors.include?(:registry_code)
+      
+      #Assert
+      expect(result).to be true
+    end
   end
 end
