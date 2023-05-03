@@ -4,8 +4,10 @@ describe 'Admin acessa produtos' do
   it 'e tem produtos cadastrados' do
 
     #Arrange
-    product = Product.create!(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
+    product = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
                               weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
+    product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
+    product.save
 
     #Act
     visit root_path

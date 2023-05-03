@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 
   validates :name, :description, :weight, :width, :height, :depth,
-            :category, :code, presence: true
+            :category, :code, :photo, presence: true
 
   validates :code, uniqueness: true
 

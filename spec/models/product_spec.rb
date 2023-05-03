@@ -82,11 +82,25 @@ RSpec.describe Product, type: :model do
       #Arrange
       product = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
                                 weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
+      product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
+      
       #Act
+      product.save
       result = product.valid?
 
       #Assert
       expect(result).to be true
+    end
+    it 'deve conter uma imagem' do
+      #Arrange
+      product = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
+                            weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
+      #Act
+      product.valid?
+      result = product.valid?
+
+      #Assert
+      expect(result).to be false
     end
   end
 end
