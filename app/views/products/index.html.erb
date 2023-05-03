@@ -1,7 +1,10 @@
 <h1>Lista de Produtos</h1>
+
+<% if current_user.present? && current_user.role == 'admin' %>
 <div>
   <%= link_to '+ Novo Produto', new_product_path %>
 </div>
+<% end %>
 
 </div>
   <% if @products.any? %> 

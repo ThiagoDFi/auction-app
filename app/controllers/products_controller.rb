@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    if current_user.role != 'admin'
+      flash[:notice] = "Apenas usuarios admin podem criar um produto"
+      redirect_to root_path
+    end
   end
 
   def create

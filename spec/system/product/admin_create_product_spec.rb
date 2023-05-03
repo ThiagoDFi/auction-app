@@ -1,11 +1,14 @@
 require 'rails_helper'
 
-describe 'Admin cadastra um producto' do
+describe 'Admin cadastra um produto' do
   it 'a partir da tela inicial' do
 
     #Arrange
+    admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '31350282081', role: 'admin')
 
     #Act
+    login_as(admin)
     visit root_path
     click_on 'Produtos'
     click_on '+ Novo Produto'
@@ -24,8 +27,12 @@ describe 'Admin cadastra um producto' do
 
   it 'com sucesso' do
     #Arrange
+    admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '31350282081', role: 'admin')
+
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABC1234567')
     #Act
+    login_as(admin)
     visit root_path
     click_on 'Produtos'
     click_on '+ Novo Produto'
@@ -52,8 +59,11 @@ describe 'Admin cadastra um producto' do
 
   it 'com dados incompletos' do
     #Arrange
+    admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '31350282081', role: 'admin')
 
     #Act
+    login_as(admin)
     visit root_path
     click_on 'Produtos'
     click_on '+ Novo Produto'

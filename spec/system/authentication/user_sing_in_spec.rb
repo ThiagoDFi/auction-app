@@ -20,7 +20,7 @@ describe 'Usuário se autentica' do
     within('nav') do
     expect(page).not_to have_link 'Entrar'
     expect(page).to have_content 'Sair'
-    expect(page).to have_content 'thiago@email.com'
+    expect(page).to have_content 'Olá Thiago'
     end
   end
   it 'e faz logout' do
@@ -42,6 +42,6 @@ describe 'Usuário se autentica' do
     expect(page).to have_content 'Logout efetuado com sucesso.'
     expect(page).to have_content 'Entrar'
     expect(page).not_to have_button 'Sair'
-    expect(page).not_to have_content 'joao@email.com'
+    expect(page).not_to have_content 'thiago@email.com'
   end
 end
