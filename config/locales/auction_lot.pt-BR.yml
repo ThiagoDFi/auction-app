@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      auction_lot: Lote de Leilão
+    attributes:
+      auction_lot:
+        code: "Código"
+        start_date: "Data inicio do lote"
+        end_date: "Data final do lote"
+        minimum_value: "Valor minimo"
+        diff_value: "Valor diferença de lance"
+        product: "Produto"
+        product_id: "Produto"
+        admin_record: "Criador"
+        admin_approve: "Aprovador"

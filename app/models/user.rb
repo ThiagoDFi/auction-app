@@ -31,19 +31,19 @@ def cpf_valido?(cpf)
 
   return false unless cpf.length == 11
 
-  soma = 0
+  sum = 0
   9.times do |i|
-    soma += cpf[i].to_i * (10 - i)
+    sum += cpf[i].to_i * (10 - i)
   end
-  resto = soma % 11
-  digito1 = resto < 2 ? 0 : 11 - resto
+  rest = sum % 11
+  digit1 = rest < 2 ? 0 : 11 - rest
 
-  soma = 0
+  sum = 0
   10.times do |i|
-    soma += cpf[i].to_i * (11 - i)
+    sum += cpf[i].to_i * (11 - i)
   end
-  resto = soma % 11
-  digito2 = resto < 2 ? 0 : 11 - resto
+  rest = sum % 11
+  digit2 = rest < 2 ? 0 : 11 - rest
 
-  cpf[-2..].to_i == (digito1 * 10 + digito2)
+  cpf[-2..].to_i == (digit1 * 10 + digit2)
 end

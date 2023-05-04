@@ -1,0 +1,17 @@
+<h3>Código do Leilão: <%= @auction_lot.code %></h3>
+
+<dl>
+  <dt>Produto: </dt>
+  <dd><%= @auction_lot.product.name %></dd>
+  <dt>Data inicio: </dt>
+  <dd><%= @auction_lot.start_date %></dd>
+  <dt>Data final do lote: </dt>
+  <dd><%= I18n.localize@auction_lot.end_date %></dd>
+  <dt>Valor minimo: </dt>
+  <dd><%= @auction_lot.minimum_value %></dd>
+  <dt>Valor diferença: </dt>
+  <dd><%= @auction_lot.diff_value %></dd>
+  <dt>Responsavel: </dt>
+  <dd><%= @auction_lot.admin_record %></dd>
+</dl>
+

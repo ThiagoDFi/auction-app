@@ -16,6 +16,7 @@
     <% end %>
       <nav>
         <%= link_to 'Produtos', products_path %> |
+        <%= link_to 'Lote de leilão', auction_lots_path%> |
         <% if user_signed_in? %>
           Olá <%= current_user.name %> |
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
