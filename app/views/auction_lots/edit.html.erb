@@ -1,0 +1,28 @@
+<h3>Editando um lote para leilão</h3>
+
+<%= form_with(model: @auction_lot) do | f |%>
+
+  <div>
+    <%= f.label :product_id, 'Produto' %>
+    <%= f.collection_select :product_id, @products, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :end_date, 'Data final do lote' %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= f.label :minimum_value, 'Valor minimo' %>
+    <%= f.number_field :minimum_value%>
+  </div>
+
+  <div>
+    <%= f.label :diff_value, 'Valor diferença de lance' %>
+    <%= f.number_field :diff_value %>
+  </div>
+
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

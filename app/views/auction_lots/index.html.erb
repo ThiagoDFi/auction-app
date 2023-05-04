@@ -1,3 +1,13 @@
 <h1>Lotes para Leilão</h1>
 
 <%= link_to '+ Novo Lote de Leilão', new_auction_lot_path%>
+
+<% @auction_lots.each do |lot| %>
+  <div>
+    <dl>
+      <dt><%= link_to lot.code, lot %></dt>
+      <dd><%= lot.product.name%> </dd>
+      <dd><%= lot.product.category %> </dd>
+    <dl>
+  </div>
+<% end %>

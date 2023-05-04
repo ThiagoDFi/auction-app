@@ -23,5 +23,60 @@ RSpec.describe AuctionLot, type: :model do
       #Assert
       expect(result).to be true
     end
+    it 'data inicial deve dar erro se nor nula' do
+      #Arrange
+      lot = AuctionLot.new(start_date: '')
+
+      #Act
+      lot.valid?
+      result = lot.errors.include?(:start_date)
+
+      #Assert
+      expect(result).to be true
+    end
+    it 'data final do lote deve dar erro se nor nula' do
+      #Arrange
+      lot = AuctionLot.new(end_date: '')
+
+      #Act
+      lot.valid?
+      result = lot.errors.include?(:end_date)
+
+      #Assert
+      expect(result).to be true
+    end
+    it 'Valor minimo deve dar erro se nor nula' do
+      #Arrange
+      lot = AuctionLot.new(minimum_value: '')
+
+      #Act
+      lot.valid?
+      result = lot.errors.include?(:minimum_value)
+
+      #Assert
+      expect(result).to be true
+    end
+    it 'Valor de diferença deve dar erro se nor nula' do
+      #Arrange
+      lot = AuctionLot.new(diff_value: '')
+
+      #Act
+      lot.valid?
+      result = lot.errors.include?(:diff_value)
+
+      #Assert
+      expect(result).to be true
+    end
+    it 'Responsavel deve dar erro se nor nula' do
+      #Arrange
+      lot = AuctionLot.new(admin_record: '')
+
+      #Act
+      lot.valid?
+      result = lot.errors.include?(:admin_record)
+
+      #Assert
+      expect(result).to be true
+    end
   end
 end
