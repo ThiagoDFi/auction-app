@@ -20,7 +20,7 @@ class AuctionLotsController < ApplicationController
 
   def create
     auction_lot_params = params.require(:auction_lot).permit(:end_date, :minimum_value, :diff_value,
-                                                             :code, product_id: [])
+                                                             :code, product_ids: [])
     @auction_lot = AuctionLot.new(auction_lot_params)
     # binding.pry
     @auction_lot.admin_record = current_user.email

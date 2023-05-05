@@ -2,8 +2,8 @@
 <%= form_with(model: @auction_lot, class: "row g-3") do |f| %>
   <%= form_for @auction_lot, class: "row g-3" do |f| %>
     <div class="col-md-6">
-      <%= f.label :product_id, 'Produtos' %>
-      <%= f.collection_check_boxes :product_id, Product.all, :id, :name, class: "form-check-input" do |cb| %>
+      <%= f.label :product_ids, 'Produtos' %>
+      <%= f.collection_check_boxes :product_ids, Product.all, :id, :name, class: "form-check-input" do |cb| %>
         <div class="form-check">
           <%= cb.check_box + cb.text %>
         </div>

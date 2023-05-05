@@ -81,7 +81,7 @@ RSpec.describe Product, type: :model do
     it 'deve ter um código' do
       #Arrange
       product = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
-                                weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
+                            weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
       product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
       
       #Act

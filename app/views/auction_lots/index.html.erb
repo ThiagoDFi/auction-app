@@ -9,18 +9,20 @@
   <% end %>
 
 
+
   <div class="row">
     <% @auction_lots.each do |lot| %>
-      <div class="col-md-4">
-        <div class="card mb-4">
-          <%= image_tag(lot.product.photo, class: "card-img-top", alt: "product image") %>
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to lot.code, lot %></h5>
-            <p class="card-text"><%= lot.product.category %></p>
-            <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary" %>
+      <% lot.products.each do |prd|%>
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <%= image_tag(prd.photo, class: "card-img-top", alt: "product image") %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to lot.code, lot %></h5>
+              <p class="card-text"><%= prd.category %></p>
+              <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary" %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
-</div>

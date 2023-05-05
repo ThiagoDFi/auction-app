@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 
-  has_many :auction_lots
+  belongs_to :auction_lot
 
   validates :name, :description, :weight, :width, :height, :depth,
             :category, :code, :photo, presence: true
