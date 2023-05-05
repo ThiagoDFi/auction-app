@@ -2,10 +2,10 @@
 
 <%= form_with(model: @auction_lot) do | f |%>
 
-  <div>
-    <%= f.label :product_id, 'Produto' %>
-    <%= f.collection_select :product_id, @products, :id, :name %>
-  </div>
+<%= form_for @auction_lot do |f| %>
+  <%= f.label :product_id %>
+  <%= f.collection_check_boxes :product_id, Product.all, :id, :name %>
+
 
   <div>
     <%= f.label :code, 'Código do Leilão'%>
@@ -29,4 +29,5 @@
   <div>
     <%= f.submit 'Enviar' %>
   </div>
+  <% end %>
 <% end %>
