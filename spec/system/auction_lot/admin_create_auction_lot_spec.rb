@@ -13,10 +13,10 @@ describe 'Administrador cadastra lote de leião' do
     click_on '+ Novo Lote de Leilão'
 
     #Assert
-    expect(page).to have_content "Criando de lote para leilão"
+    expect(page).to have_content "Criando lote para leilão"
     expect(page).to have_content "Produto"
     expect(page).to have_content "Data final do lote"
-    expect(page).to have_content "Valor minimo"
+    expect(page).to have_content "Valor mínimo"
     expect(page).to have_content "Valor diferença de lance"
   end
   it 'com sucesso' do

@@ -1,22 +1,32 @@
-<h1>Lista de Produtos</h1>
+<div class="container mt-4">
+  <h1>Lista de Produtos</h1>
 
-<% if current_user.present? && current_user.role == 'admin' %>
-<div>
-  <%= link_to '+ Novo Produto', new_product_path %>
-</div>
-<% end %>
-
-</div>
-  <% if @products.any? %> 
-
-  <% @products.each do | product |%>
-    <div>
-      <%= link_to product.name, product %>
+  <% if current_user.present? && current_user.role == 'admin' %>
+    <div class="mb-4">
+      <div class="text-end mb-3">
+        <%= link_to '+ Novo Produto', new_product_path, class: "btn btn-primary" %>
+      </div>
     </div>
   <% end %>
 
+  <% if @products.any? %>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @products.each do |product| %>
+        <div class="col mb-4">
+          <div class="card h-100">
+            <% if product.photo.attached? %>
+              <%= image_tag(product.photo, class: "card-img-top", style: "height: 200px; object-fit: cover;") %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to product.name, product %></h5>
+              <p class="card-text"><%= product.description %></p>
+              <p class="card-text"><%= dimension(product.height, product.width, product.depth) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% else %>
     <p>Não existem produtos cadastrados.</p>
   <% end %>
 </div>
-

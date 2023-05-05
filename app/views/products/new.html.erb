@@ -1,58 +1,60 @@
-<h1>Criação de Pedido</h1>
+<div class="container mt-4 bg-light p-4">
+  <h1>Criação de Pedido</h1>
 
-<% if(@product.errors.any?) %>
-  <p> Verifique os erros abaixo: </p>
-  <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-      <li><%= msg %> </li>
-      <% end %>
-  </ul>
-<% end %>
+  <% if(@product.errors.any?) %>
+    <div class="alert alert-danger">
+      <p>Verifique os erros abaixo:</p>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_with(model: @product) do | f |%>
+  <%= form_with(model: @product) do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name%>
-  </div>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :description, "Descrição" %>
-    <%= f.text_area :description%>
-  </div>
+    <div class="form-group">
+      <%= f.label :photo %>
+      <%= f.file_field :photo, class: "form-control-file" %>
+    </div>
 
-  <div>
-    <%= f.label :photo, "Foto do Produto" %>
-    <%= f.file_field :photo%>
-  </div>
+    <div class="form-group">
+      <%= f.label :weight %>
+      <%= f.number_field :weight, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :weight, "Peso" %>
-    <%= f.number_field :weight%>
-  </div>
+    <div class="form-group">
+      <%= f.label :width %>
+      <%= f.number_field :width, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :width, "Largura" %>
-    <%= f.number_field :width%>
-  </div>
+    <div class="form-group">
+      <%= f.label :height %>
+      <%= f.number_field :height, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :height, "Altura" %>
-    <%= f.number_field :height%>
-  </div>
+    <div class="form-group">
+      <%= f.label :depth %>
+      <%= f.number_field :depth, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :depth, "Profundidade" %>
-    <%= f.number_field :depth%>
-  </div>
+    <div class="form-group">
+      <%= f.label :category %>
+      <%= f.text_field :category, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= f.label :category, "Categoria" %>
-    <%= f.text_field :category%>
-  </div>
-
-  <div>
-    <%= f.submit "Enviar" %>
-  </div>
-
-<% end %>
+    <div class="form-group">
+      <%= f.submit "Enviar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

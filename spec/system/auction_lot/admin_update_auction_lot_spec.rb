@@ -37,8 +37,8 @@ describe 'Admin edita um lote de leilão' do
     expect(page).to have_content "Produto: Playstation 5"
     expect(page).to have_content "Data inicio: #{Date.today}"
     expect(page).to have_content "Data final do lote: #{8.months.from_now.strftime("%d/%m/%Y")}"
-    expect(page).to have_content "Valor minimo: 4000"
-    expect(page).to have_content "Valor diferença: 500"
-    expect(page).to have_content "Responsavel: pedro@leilaodogalpao.com.br"
+    expect(page).to have_content "Valor mínimo: R$ 4.000,00"
+    expect(page).to have_content "Valor diferença: R$ 500,00"
+    expect(page).to have_content "Responsável: pedro@leilaodogalpao.com.br"
   end
 end

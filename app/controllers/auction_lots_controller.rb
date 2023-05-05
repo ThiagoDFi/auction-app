@@ -11,11 +11,16 @@ class AuctionLotsController < ApplicationController
   def new
     @auction_lot = AuctionLot.new
     @products = Product.all
+    @product = Product.new
+    if current_user.role != 'admin'
+      flash[:notice] = "Apenas usuarios admin podem criar um produto"
+      redirect_to root_path
+    end
   end
 
   def create
     auction_lot_params = params.require(:auction_lot).permit(:end_date, :minimum_value, :diff_value,
-                                                             :code, product_ids: [])
+                                                             :code, product_id: [])
     @auction_lot = AuctionLot.new(auction_lot_params)
     # binding.pry
     @auction_lot.admin_record = current_user.email

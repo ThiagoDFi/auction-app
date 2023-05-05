@@ -1,13 +1,26 @@
 <h1>Lotes para Leilão</h1>
 
-<%= link_to '+ Novo Lote de Leilão', new_auction_lot_path%>
+  <% if current_user.present? && current_user.role == 'admin' %>
+    <div class="mb-4">
+      <div class="text-end mb-3">
+        <%= link_to '+ Novo Lote de Leilão', new_auction_lot_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
 
-<% @auction_lots.each do |lot| %>
-  <div>
-    <dl>
-      <dt><%= link_to lot.code, lot %></dt>
-      <dd><%= lot.product.name%> </dd>
-      <dd><%= lot.product.category %> </dd>
-    <dl>
+
+  <div class="row">
+    <% @auction_lots.each do |lot| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <%= image_tag(lot.product.photo, class: "card-img-top", alt: "product image") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to lot.code, lot %></h5>
+            <p class="card-text"><%= lot.product.category %></p>
+            <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

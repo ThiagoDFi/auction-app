@@ -1,8 +1,7 @@
 class AuctionLot < ApplicationRecord
   belongs_to :product
+
   
-
-
   validates :code, :start_date, :end_date, :minimum_value, :diff_value, :admin_record, presence: true
   validate :code_valid?
 

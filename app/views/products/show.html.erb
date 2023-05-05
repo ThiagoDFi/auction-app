@@ -1,22 +1,26 @@
-<h1>Produto</h1>
-
-<dl>
-  <dt>Nome: </dt>
-  <dd><%= @product.name %></dd>
-  <dt>Descrição: </dt>
-  <dd><%= @product.description %></dd>
-  <dt>Peso: </dt>
-  <dd><%= @product.weight %>g</dd>
-  <dt>Dimensão: </dt>
-  <dd><%= dimension(@product.height, @product.width, @product.depth) %></dd>
-  <dt>Categoria: </dt>
-  <dd><%= @product.category %></dd>
-  <dt>SKU: </dt>
-  <dd><%= @product.code %></dd>
-  <% if @product.photo.attached? %>
-  <dt>Foto: </dt>
-  <dd><%= image_tag(@product.photo, style: "height: 120px;")%>
-  <% end %>
-</dl>
-
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Produto: </h1>
+      <dl class="dl-horizontal">
+        <dt>Nome:</dt>
+        <dd><%= @product.name %></dd>
+        <dt>Descrição:</dt>
+        <dd><%= @product.description %></dd>
+        <dt>Peso:</dt>
+        <dd><%= @product.weight %>g</dd>
+        <dt>Dimensão:</dt>
+        <dd><%= dimension(@product.height, @product.width, @product.depth) %></dd>
+        <dt>Categoria:</dt>
+        <dd><%= @product.category %></dd>
+        <dt>SKU:</dt>
+        <dd><%= @product.code %></dd>
+      </dl>
+    </div>
+    <% if @product.photo.attached? %>
+      <div class="col-md-6">
+        <%= image_tag(@product.photo, class: "img-thumbnail") %>
+      </div>
+    <% end %>
+  </div>
+</div>

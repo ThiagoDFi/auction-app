@@ -4,12 +4,12 @@ pt-BR:
       auction_lot: Lote de Leilão
     attributes:
       auction_lot:
-        code: "Código"
+        code: "Código do Leilão"
         start_date: "Data inicio do lote"
         end_date: "Data final do lote"
-        minimum_value: "Valor minimo"
+        minimum_value: "Valor mínimo"
         diff_value: "Valor diferença de lance"
         product: "Produto"
         product_id: "Produto"
-        admin_record: "Criador"
+        admin_record: "Responável"
         admin_approve: "Aprovador"
