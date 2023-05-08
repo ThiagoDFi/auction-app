@@ -1,5 +1,5 @@
 class AuctionLot < ApplicationRecord
-  has_many :product_items
+  has_many :product_items, dependent: :destroy
   has_many :products, through: :product_items
 
   accepts_nested_attributes_for :product_items

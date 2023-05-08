@@ -25,6 +25,7 @@
       <% @auction_lot.product_items.each do |item|%>
         <div class="card float-right mb-3">
           <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image") %>
+          <%= button_to "Remover #{item.product.name}", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete %>
           <div class="card-body">
             <h5 class="card-title"><%= item.product.name %></h5>
           </div>
