@@ -10,6 +10,7 @@ class AuctionLotsController < ApplicationController
 
   def new
     @auction_lot = AuctionLot.new
+    @auction_lot.product_items.build
     @products = Product.all
     @product = Product.new
     if current_user.role != 'admin'
@@ -20,9 +21,8 @@ class AuctionLotsController < ApplicationController
 
   def create
     auction_lot_params = params.require(:auction_lot).permit(:end_date, :minimum_value, :diff_value,
-                                                             :code, product_ids: [])
+                                                             :code)
     @auction_lot = AuctionLot.new(auction_lot_params)
-    # binding.pry
     @auction_lot.admin_record = current_user.email
     @auction_lot.start_date = Date.today
     if @auction_lot.save
@@ -41,7 +41,7 @@ class AuctionLotsController < ApplicationController
 
   def update
     @auction_lot = AuctionLot.find(params[:id])
-    auction_lot_params = params.require(:auction_lot).permit(:product_id, :end_date, :minimum_value,
+    auction_lot_params = params.require(:auction_lot).permit(:end_date, :minimum_value,
                                         :diff_value)
     if @auction_lot = AuctionLot.update(auction_lot_params)
       redirect_to auction_lot_path(params[:id]), notice: "Lote de leilão atualizado com sucesso."

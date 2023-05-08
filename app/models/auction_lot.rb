@@ -1,5 +1,8 @@
 class AuctionLot < ApplicationRecord
-  has_many :products
+  has_many :product_items
+  has_many :products, through: :product_items
+
+  accepts_nested_attributes_for :product_items
   
   validates :code, :start_date, :end_date, :minimum_value, :diff_value, :admin_record, presence: true
   validate :code_valid?

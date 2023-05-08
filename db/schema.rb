@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_172138) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_05_203330) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,6 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_172138) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_items", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "auction_lot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_lot_id"], name: "index_product_items_on_auction_lot_id"
+    t.index ["product_id"], name: "index_product_items_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -63,8 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_172138) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "auction_lot_id", default: 0, null: false
-    t.index ["auction_lot_id"], name: "index_products_on_auction_lot_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,5 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_172138) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "products", "auction_lots"
+  add_foreign_key "product_items", "auction_lots"
+  add_foreign_key "product_items", "products"
 end

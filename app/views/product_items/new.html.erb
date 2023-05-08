@@ -1,0 +1,11 @@
+<h1>Novo Item para o Lote <%= @auction_lot.code%></h1>
+
+<%= form_with(model: [@auction_lot, @product_item]) do |f|%>
+
+  <div>
+    <%= f.label :product_id, 'Produtos'%>
+    <%= f.collection_select :product_id, @products, :id, :name %>
+  </div>
+
+  <%= f.submit 'Gravar'%>
+  <% end %>

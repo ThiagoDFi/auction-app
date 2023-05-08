@@ -27,7 +27,6 @@ describe 'Admin edita um lote de leilão' do
     click_on 'Lote de leilão'
     click_on 'GRU123456'
     click_on 'Editar'
-    select 'Playstation 5', from: 'Produto'
     fill_in 'Data final do lote', with: 8.months.from_now
     fill_in 'Valor minimo', with: 4000
     fill_in 'Valor diferença de lance', with: 500
@@ -36,8 +35,7 @@ describe 'Admin edita um lote de leilão' do
     #Assert
     expect(page).to have_content "Lote de leilão atualizado com sucesso."
     expect(page).to have_content "Código do Leilão: GRU123456"
-    expect(page).to have_content "Produto: Playstation 5"
-    expect(page).to have_content "Data inicio: #{Date.today}"
+    expect(page).to have_content "Data inicio: #{Date.today.strftime('%d/%m/%Y')}"
     expect(page).to have_content "Data final do lote: #{8.months.from_now.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Valor mínimo: R$ 4.000,00"
     expect(page).to have_content "Valor diferença: R$ 500,00"

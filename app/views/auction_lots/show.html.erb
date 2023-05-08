@@ -5,15 +5,11 @@
     </div>
   </div>
 
-    <% @auction_lot.products.each do |prd|%>
-      
   <div class="row">
     <div class="col-md-6">
       <dl class="row">
-        <dt class="col-sm-3">Produto: </dt>
-        <dd class="col-sm-9"><%= prd.name %></dd>
         <dt class="col-sm-3">Data inicio: </dt>
-        <dd class="col-sm-9"><%= @auction_lot.start_date %></dd>
+        <dd class="col-sm-9"><%= I18n.localize@auction_lot.start_date %></dd>
         <dt class="col-sm-3">Data final do lote: </dt>
         <dd class="col-sm-9"><%= I18n.localize@auction_lot.end_date %></dd>
         <dt class="col-sm-3">Valor mínimo: </dt>
@@ -24,7 +20,21 @@
         <dd class="col-sm-9"><%= @auction_lot.admin_record %></dd>
       </dl>
     </div>
-    <% end %>
+    
+    <div class="col-md-6">
+      <% @auction_lot.product_items.each do |item|%>
+        <div class="card float-right mb-3">
+          <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item.product.name %></h5>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
+    </div>
 
     <div class="col-md-6">
       <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary" %>

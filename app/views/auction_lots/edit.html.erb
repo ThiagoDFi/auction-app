@@ -1,11 +1,6 @@
-<h3>Editando um lote para leilão</h3>
+<h3>Editando o lote "<%= @auction_lot.code %>" para leilão</h3>
 
 <%= form_with(model: @auction_lot) do | f |%>
-
-  <div>
-    <%= f.label :product_id, 'Produto' %>
-    <%= f.collection_select :product_id, @products, :id, :name %>
-  </div>
 
   <div>
     <%= f.label :end_date, 'Data final do lote' %>
