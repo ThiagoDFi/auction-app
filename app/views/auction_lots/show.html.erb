@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row no-gutters">
     <div class="col-md-6">
       <dl class="row">
         <dt class="col-sm-3">Data inicio: </dt>
@@ -23,11 +23,13 @@
     
     <div class="col-md-6">
       <% @auction_lot.product_items.each do |item|%>
-        <div class="card float-right mb-3">
-          <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image") %>
-          <%= button_to "Remover #{item.product.name}", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete %>
-          <div class="card-body">
-            <h5 class="card-title"><%= item.product.name %></h5>
+        <div class="col-md-6 col-lg-4 mb-3">
+          <div class="card mr-3">
+            <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
+            <%= button_to "Remover #{item.product.name}", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete, class:"btn btn-danger"%>
+            <div class="card-body">
+              <h5 class="card-title"><%= item.product.name %></h5>
+            </div>
           </div>
         </div>
       <% end %>
