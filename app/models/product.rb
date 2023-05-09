@@ -3,6 +3,8 @@ class Product < ApplicationRecord
   has_many :product_items
   has_many :auction_lots, through: :product_items
 
+  enum status: { active: 0, inactive: 1}
+
   validates :name, :description, :weight, :width, :height, :depth,
             :category, :code, :photo, presence: true
 
