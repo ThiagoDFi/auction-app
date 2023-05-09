@@ -10,6 +10,8 @@ class BidsController < ApplicationController
     @bid.user = current_user
     if @bid.save
       redirect_to @auction_lot, notice: "Lance enviado com sucesso!"
+    else
+      redirect_to @auction_lot, notice: "Erro verificar falhas"
     end
   end
 end

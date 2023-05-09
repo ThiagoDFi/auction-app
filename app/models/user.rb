@@ -6,7 +6,7 @@ class User < ApplicationRecord
   
   validates :name, :registry_code, presence: true
 
-  validates :registry_code, uniqueness: true
+  validates :registry_code, :email, uniqueness: true
   validate :check_cpf
 
   enum role: { customer: 0, admin: 1 }
