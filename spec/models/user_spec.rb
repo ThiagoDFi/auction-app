@@ -63,4 +63,30 @@ RSpec.describe User, type: :model do
       expect(result).to be true
     end
   end
+  describe '#set_admin' do 
+    it 'Usuario recebe a role admin se tiver o dominio correto' do
+      #Arrange
+      user = User.new(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+                    registry_code: '31350282081')
+
+      #Act
+      result = user.valid?
+
+      #Assert
+      expect(result).to be true
+      expect(user.role).to eq 'admin'
+    end
+    it 'Usuario sem do dominio do leilao rece role customer' do
+      #Arrange
+      user = User.new(name: 'Pedro', email: 'pedro@gmail.com.br', password: 'password',
+      registry_code: '31350282081')
+
+      #Act
+      result = user.valid?
+
+      #Assert
+      expect(result).to be true
+      expect(user.role).to eq 'customer'
+    end
+  end
 end

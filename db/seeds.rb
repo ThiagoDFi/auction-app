@@ -7,4 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
-                    registry_code: '31350282081', role: 'admin')
+                    registry_code: '31350282081')

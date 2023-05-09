@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h1>Lista de Produtos</h1>
 
-  <% if current_user.present? && current_user.role == 'admin' %>
+  <% if current_user.present? && current_user.admin? %>
     <div class="mb-4">
       <div class="text-end mb-3">
         <%= link_to '+ Novo Produto', new_product_path, class: "btn btn-primary" %>

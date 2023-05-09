@@ -4,9 +4,8 @@ describe 'Admin cadastra um produto' do
   it 'a partir da tela inicial' do
 
     #Arrange
-    admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
-                         registry_code: '31350282081', role: 'admin')
-
+    admin = User.create(name: 'Fernando', email: 'fernando@leilaodogalpao.com.br', password: 'password',
+                        registry_code: '45901059000')
     #Act
     login_as(admin)
     visit root_path
