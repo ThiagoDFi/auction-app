@@ -35,6 +35,38 @@
       <% end %>
     </div>
 
+    <div>
+      <dl>
+        <dt class="col-sm-3">Ultimo lance: </dt>
+        <% unless @amount.nil? %>
+        <dd class="col-sm-9"><%= number_to_currency @amount.amount %></dd>
+        <% else %>
+        <dd class="col-sm-9">Nenhum lance foi dado até o momento</dd>
+        <% end %>
+      </dl>
+    </div>
+  <%= form_with(model: [@auction_lot, @bid], local: true) do |f| %>
+    <% if @bid.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+        <ul>
+        <% @bid.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :amount, "Valor do lance" %>
+      <%= f.number_field :amount, class: "form-control", size: 10 %>
+    </div>
+
+    <%= f.submit "Enviar lance", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
     <div class="col-md-6">
       <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
     </div>

@@ -1,16 +1,19 @@
 <div class="container">
   <h1 class="text-center">Lotes para Leilão</h1>
   <div class="row">
-    <% @products.each do |lot| %>
+    <% @auction_lots.each do |lot| %>
+      <% lot.product_items.each do |pdi|%>
       <div class="col-md-3">
         <div class="card mb-4">
-          <%= image_tag(lot.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
+          <%= image_tag(pdi.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
           <div class="card-body">
-            <p class="card-text"><%= lot.description %></p>
-            <%= link_to 'Dar Lance', lot, class: "btn btn-primary" %>
+          <p class="card-text">Código: <%= lot.code %></p>
+            <p class="card-text"><%= pdi.product.description %></p>
+            <%= link_to 'Ver detalhes', lot, class: "btn btn-primary" %>
           </div>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>

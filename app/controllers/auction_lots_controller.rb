@@ -6,6 +6,8 @@ class AuctionLotsController < ApplicationController
 
   def show
     @auction_lot = AuctionLot.find(params[:id])
+    @bid = Bid.new
+    @amount = @auction_lot.bids.last
   end
 
   def new
@@ -13,7 +15,7 @@ class AuctionLotsController < ApplicationController
     @auction_lot.product_items.build
     @products = Product.all
     @product = Product.new
-    if current_user.role != 'admin'
+    unless current_user.admin?
       flash[:notice] = "Apenas usuarios admin podem criar um produto"
       redirect_to root_path
     end
