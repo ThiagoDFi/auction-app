@@ -6,6 +6,7 @@ class AuctionLot < ApplicationRecord
   accepts_nested_attributes_for :product_items
   
   validates :code, :start_date, :end_date, :minimum_value, :diff_value, :admin_record, presence: true
+  validates :code, uniqueness: true
   validate :code_valid?
 
 
