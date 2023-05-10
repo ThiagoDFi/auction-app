@@ -13,13 +13,20 @@ class Bid < ApplicationRecord
   end
 
   def check_diff
-    last_bid = auction_lot.bids.offset(1).last
-    if last_bid.present? && (self.amount - last_bid.amount) < auction_lot.diff_value
-      self.errors.add(:amount, "Deve respeitar o valor de diferença configurado")
+    if auction_lot.bids.count == 1
+      last_bid = auction_lot.bids.first
+      if last_bid.present? && (self.amount - last_bid.amount) < auction_lot.diff_value
+        self.errors.add(:amount, "deve respeitar o valor de diferença configurado")
+      end
+    else
+      last_bid = auction_lot.bids.offset(1).last
+      if last_bid.present? && (self.amount - last_bid.amount) < auction_lot.diff_value
+        self.errors.add(:amount, "deve respeitar o valor de diferença configurado")
+      end
     end
   end
 
   def has_previous_bid?
-    auction_lot.bids.count > 1
+    auction_lot.bids.count >= 1
   end
 end

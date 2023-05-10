@@ -11,7 +11,7 @@ class BidsController < ApplicationController
     if @bid.save
       redirect_to @auction_lot, notice: "Lance enviado com sucesso!"
     else
-      redirect_to @auction_lot, notice: "Erro verificar falhas"
+      redirect_to @auction_lot, notice: @bid.errors.full_messages.join(', ')
     end
   end
 end

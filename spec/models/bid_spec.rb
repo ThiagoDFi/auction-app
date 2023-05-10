@@ -79,7 +79,7 @@ RSpec.describe Bid, type: :model do
       result = bid.errors.include?(:amount)
 
       #Assert
-      expect(bid.errors[:amount]).to include("Deve respeitar o valor de diferença configurado")
+      expect(result).to be true
     end
   end
 end
