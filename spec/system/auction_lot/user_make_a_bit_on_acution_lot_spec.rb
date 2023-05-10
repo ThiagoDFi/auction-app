@@ -22,11 +22,11 @@ describe 'Usuario faz um lance' do
                     admin_record: 'pedro@leilaodogalpao.com.br')
 
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
-    prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
+    
     #Act
     login_as(user)
     visit root_path
-    first('.btn-primary').click
+    find("#auction_lot_1", text: "Ver detalhes").click
 
     #Assert
     expect(page).to have_content "Valor do lance"

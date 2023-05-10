@@ -9,7 +9,7 @@
           <div class="card-body">
           <p class="card-text">Código: <%= lot.code %></p>
             <p class="card-text"><%= pdi.product.description %></p>
-            <%= link_to 'Ver detalhes', lot, class: "btn btn-primary" %>
+            <%= link_to 'Ver detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
           </div>
         </div>
       </div>

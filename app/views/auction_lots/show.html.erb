@@ -35,7 +35,7 @@
         <div class="col-md-6 col-lg-4 mb-3">
           <div class="card mr-3">
             <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
-            <%= button_to "Remover #{item.product.name}", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete, class:"btn btn-danger"%>
+            <%= button_to "Remover", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete, class:"btn btn-danger", id: dom_id(item)%>
             <div class="card-body">
               <h5 class="card-title"><%= item.product.name %></h5>
             </div>
