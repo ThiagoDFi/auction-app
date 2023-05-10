@@ -5,15 +5,6 @@
     </div>
   </div>
 
-  <% if(@bid.errors.any?) %>
-  <p> Verifique os erros abaixo: </p>
-  <ul>
-    <% @bid.errors.full_messages.each do |msg| %>
-      <li><%= msg %> </li>
-      <% end %>
-  </ul>
-<% end %>
-
   <div class="row no-gutters">
     <div class="col-md-6">
       <dl class="row">
