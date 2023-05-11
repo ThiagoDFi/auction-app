@@ -11,7 +11,7 @@ describe 'Admin adiciona itens a um lote' do
     product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
     product.save!
 
-    auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
+    auction_lot = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
                                  minimum_value: 1000, diff_value: 300, code: 'GRU123456',
                                  admin_record: 'pedro@leilaodogalpao.com.br')
     #Act
@@ -43,7 +43,7 @@ describe 'Admin adiciona itens a um lote' do
     product2.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
     product2.save! 
 
-    auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
+    auction_lot = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
             minimum_value: 1000, diff_value: 300, code: 'GRU123456',
             admin_record: 'pedro@leilaodogalpao.com.br')
     

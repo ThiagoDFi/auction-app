@@ -93,5 +93,16 @@ RSpec.describe AuctionLot, type: :model do
       #Assert
       expect(result).to be true
     end
+    it 'data inicio deve antes de data final' do
+      #Arrange
+      auction = AuctionLot.new(start_date: 5.days.from_now, end_date: 3.days.from_now)
+
+      #Act
+      auction.valid?
+      result = auction.errors.include?(:start_date)
+
+      #Assert
+      expect(result).to be true
+    end
   end
 end

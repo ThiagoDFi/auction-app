@@ -34,7 +34,8 @@ describe 'Administrador cadastra lote de leião' do
     click_on 'Lote de leilão'
     click_on '+ Novo Lote de Leilão'
     fill_in 'Código do Leilão', with: 'SAM123456'
-    fill_in 'Data final do lote', with: '20/08/2023'
+    fill_in 'Data inicio do lote', with: 4.days.from_now
+    fill_in 'Data final do lote', with: 2.months.from_now
     fill_in 'Valor mínimo', with: 1000
     fill_in 'Valor diferença', with: 200
     click_on 'Enviar' 
@@ -42,8 +43,8 @@ describe 'Administrador cadastra lote de leião' do
     #Assert
     expect(page).to have_content "Cadastro do lote de leilão efetuado com sucesso."
     expect(page).to have_content "Código do Leilão: SAM123456"
-    expect(page).to have_content "Data inicio: #{Date.today.strftime('%d/%m/%Y')}"
-    expect(page).to have_content "Data final do lote: 20/08/2023"
+    expect(page).to have_content "Data inicio: #{4.day.from_now.strftime('%d/%m/%Y')}"
+    expect(page).to have_content "Data final do lote: #{2.months.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 200,00"
     expect(page).to have_content "Responsável: pedro@leilaodogalpao.com.br"
