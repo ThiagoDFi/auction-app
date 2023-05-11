@@ -48,6 +48,7 @@ describe 'Administrador cadastra lote de leião' do
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 200,00"
     expect(page).to have_content "Responsável: pedro@leilaodogalpao.com.br"
+    expect(page).to have_content "Status: Aguardando aprovação"
   end
   it 'com falha' do
     #Arrange

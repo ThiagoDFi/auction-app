@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :auction_lots, only: [:index,:show, :new, :create, :edit, :update] do
     resources :product_items, only: [:new, :create, :destroy]
     resources :bids, only: [:new, :create]
+    post 'active', on: :member
+    post 'closed', on: :member
   end
 end

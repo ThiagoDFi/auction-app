@@ -1,4 +1,7 @@
 pt-BR:
+  draft: "Aguardando aprovação"
+  active: "Ativo"
+  closed: "Encerrado"
   activerecord:
     models:
       auction_lot: Lote de Leilão

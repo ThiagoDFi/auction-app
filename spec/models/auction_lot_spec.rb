@@ -105,4 +105,16 @@ RSpec.describe AuctionLot, type: :model do
       expect(result).to be true
     end
   end
+  describe 'admin cadastrada um lote para leilão' do
+    it 'e ele recebe o status correto' do
+      #Arrange
+      auction = AuctionLot.new(start_date: 3.days.from_now, end_date: 20.days.from_now, 
+                         code: 'NMN123456', minimum_value: 1000, diff_value: 200)
+      #Act
+      auction.save
+
+      #Assert
+      expect(auction.status).to eq "draft"
+    end
+  end
 end

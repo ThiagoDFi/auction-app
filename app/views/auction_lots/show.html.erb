@@ -18,6 +18,10 @@
         <dd class="col-sm-9"><%= number_to_currency @auction_lot.diff_value %></dd>
         <dt class="col-sm-3">Responsável: </dt>
         <dd class="col-sm-9"><%= @auction_lot.admin_record %></dd>
+        <dt class="col-sm-3">Aprovado por: </dt>
+        <dd class="col-sm-9"><%= @auction_lot.admin_approve %></dd>
+        <dt class="col-sm-3">Status: </dt>
+        <dd class="col-sm-9"><%= I18n.t(@auction_lot.status) %></dd>
       </dl>
     </div>
     
@@ -68,11 +72,17 @@
 </div>
 
     <div class="col-md-6">
-      <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
-    </div>
-
-    <div class="col-md-6">
       <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary" %>
     </div>
+
+    <% if @auction_lot.draft?%>
+
+    <div class="col-md-6">
+      <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
+    </div>
+    <div class="col-md-6">
+      <%= button_to 'Aprovar', active_auction_lot_path(@auction_lot.id) %>
+    </div>
+    <% end %>
   </div>
 </div>
