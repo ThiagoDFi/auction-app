@@ -6,6 +6,9 @@ describe 'Usuario faz um lance' do
     user = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'password',
                         registry_code: '07699032071')
 
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+                        registry_code: '52059095018', role: "admin")
+
     product1 = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
     weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia', status: :inactive)
 
@@ -19,14 +22,16 @@ describe 'Usuario faz um lance' do
 
     auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
                     minimum_value: 1000, diff_value: 300, code: 'GRU123456',
-                    admin_record: 'pedro@leilaodogalpao.com.br')
+                    admin_record: 'pedro@leilaodogalpao.com.br',
+                    admin_approve: 'admin@leilaodogalpao.com.br',
+                    status: :active)
 
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
     
     #Act
     login_as(user)
     visit root_path
-    find("#auction_lot_1", text: "Ver detalhes").click
+    find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
     expect(page).to have_content "Valor do lance"
@@ -35,6 +40,9 @@ describe 'Usuario faz um lance' do
     #Arrange
     user = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'password',
                         registry_code: '07699032071')
+    
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+                        registry_code: '52059095018', role: "admin")
 
     product1 = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
     weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia', status: :inactive)
@@ -49,7 +57,9 @@ describe 'Usuario faz um lance' do
 
     auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
                     minimum_value: 1000, diff_value: 300, code: 'GRU123456',
-                    admin_record: 'pedro@leilaodogalpao.com.br')
+                    admin_record: 'pedro@leilaodogalpao.com.br',
+                    admin_approve: 'admin@leilaodogalpao.com.br',
+                    status: :active)
 
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
     prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
@@ -70,6 +80,9 @@ describe 'Usuario faz um lance' do
     user = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'password',
                         registry_code: '07699032071')
 
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+                        registry_code: '52059095018', role: "admin")
+
     product1 = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
                            weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia', status: :inactive)
 
@@ -83,7 +96,9 @@ describe 'Usuario faz um lance' do
       
     auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
                                      minimum_value: 1000, diff_value: 300, code: 'GRU123456',
-                                     admin_record: 'pedro@leilaodogalpao.com.br')
+                                     admin_record: 'pedro@leilaodogalpao.com.br',
+                                     admin_approve: 'admin@leilaodogalpao.com.br',
+                                     status: :active)
       
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
     prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)

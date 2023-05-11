@@ -1,18 +1,50 @@
-<div class="container">
+<div class="container custom-background">
   <h1 class="text-center">Lotes para Leilão</h1>
+
+  <h2>Lotes não lançados</h2>
   <div class="row">
     <% @auction_lots.each do |lot| %>
-      <% lot.product_items.each do |pdi|%>
-      <div class="col-md-3">
-        <div class="card mb-4">
-          <%= image_tag(pdi.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
-          <div class="card-body">
-          <p class="card-text">Código: <%= lot.code %></p>
-            <p class="card-text"><%= pdi.product.description %></p>
-            <%= link_to 'Ver detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
+      <% lot.product_items.each_with_index do |pdi, index|%>
+        <% if index == 0 %>
+          <div class="col-md-3">
+            <div class="card mb-4 card-height">
+              <%= image_tag(pdi.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
+              <div class="card-body">
+                <p class="card-text">Código: <%= lot.code %></p>
+                <p class="card-text">Inicio: <%= lot.start_date.strftime("%d/%m/%Y") %></p>
+                <p class="card-text">Categoria: <%= pdi.product.category %></p>
+                <div class= "alert alert-warning" role="alert">
+                  <p class="card-text">Status: <%= I18n.t(lot.status) %></p>
+                </div>
+                <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2>Lotes lançados</h2>
+  <div class="row">
+    <% @auction_lots_actives.each do |lot| %>
+      <% lot.product_items.each_with_index do |pdi, index|%>
+      	<% if index == 0 %>
+        <div class="col-md-3">
+          <div class="card mb-4 card-height">
+            <%= image_tag(pdi.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
+            <div class="card-body">
+              <p class="card-text">Código: <%= lot.code %></p>
+              <p class="card-text">Inicio: <%= lot.start_date.strftime("%d/%m/%Y") %></p>
+              <p class="card-text">Categoria: <%= pdi.product.category %></p>
+              <div class="alert alert-success" role="alert">
+                <p class="card-text">Status: <%= I18n.t(lot.status) %></p>
+              </div>
+              <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
+            </div>
           </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
