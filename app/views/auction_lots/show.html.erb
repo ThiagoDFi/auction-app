@@ -79,12 +79,12 @@
   <% end %>
 </div>
  </div>
-    <div class="col-md-6">
-      <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary" %>
-    </div>
-
     <% if @auction_lot.draft?%>
       <% if current_user.present? && current_user.admin?%>
+        <div class="col-md-6">
+          <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary" %>
+        </div>
+
         <div class="col-md-6">
           <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
         </div>

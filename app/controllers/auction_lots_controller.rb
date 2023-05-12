@@ -1,5 +1,7 @@
 class AuctionLotsController < ApplicationController
 
+  before_action :check_admin, only: [:edit, :update, :new, :create]
+
   def index
     @auction_lots = AuctionLot.all
   end
@@ -15,10 +17,6 @@ class AuctionLotsController < ApplicationController
     @auction_lot.product_items.build
     @products = Product.all
     @product = Product.new
-    unless current_user.admin?
-      flash[:notice] = "Apenas usuarios admin podem criar um produto"
-      redirect_to root_path
-    end
   end
 
   def create
@@ -26,6 +24,7 @@ class AuctionLotsController < ApplicationController
                                                              :code, :start_date)
     @auction_lot = AuctionLot.new(auction_lot_params)
     @auction_lot.admin_record = current_user.email
+
     if @auction_lot.save
       redirect_to @auction_lot, notice: "Cadastro do lote de leilão efetuado com sucesso."
     else
@@ -44,6 +43,7 @@ class AuctionLotsController < ApplicationController
     @auction_lot = AuctionLot.find(params[:id])
     auction_lot_params = params.require(:auction_lot).permit(:end_date, :minimum_value,
                                         :diff_value)
+
     if @auction_lot = AuctionLot.update(auction_lot_params)
       redirect_to auction_lot_path(params[:id]), notice: "Lote de leilão atualizado com sucesso."
     else
@@ -62,6 +62,15 @@ class AuctionLotsController < ApplicationController
       @auction_lot.admin_approve = current_user.email
       @auction_lot.save
       redirect_to @auction_lot
+    end
+  end
+
+  private
+
+  def check_admin
+    unless current_user.admin?
+      flash[:notice] = "Apenas usuarios admin tem acesso a essa ação"
+      return redirect_to root_path
     end
   end
 end
