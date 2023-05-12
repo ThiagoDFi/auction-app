@@ -81,5 +81,35 @@ RSpec.describe Bid, type: :model do
       #Assert
       expect(result).to be true
     end
+    it 'falhar se lance estiver fora do periodo' do
+      #Arrange
+      user = User.create!(name: 'Jose', email: 'jose@gmail.com', password: 'password',
+                          registry_code: '26947693063', role: 'customer')
+
+      admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+      registry_code: '31350282081', role: 'admin')
+
+      product1 = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
+             weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
+      product1.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
+      product1.save!
+
+      auction_lot = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+                        minimum_value: 100, diff_value: 2, code: 'GRU123456',
+                        admin_record: 'pedro@leilaodogalpao.com.br',
+                        admin_approve: 'admin@leilaodogalpao.com.br',
+                        status: :active)
+
+      prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
+
+      bid = Bid.new(amount: 101, auction_lot: auction_lot, user: user)
+
+      #Act
+      bid.valid?
+      result = bid.errors.include?(:amount)
+
+      #Assert
+      expect(result).to be true
+    end
   end
 end

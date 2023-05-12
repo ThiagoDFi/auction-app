@@ -5,6 +5,7 @@ class Bid < ApplicationRecord
   validates :amount, presence: true
   validate :check_minimum
   validate :check_diff, if: :has_previous_bid?
+  validate :check_valid_date_for_bid
 
   def check_minimum
     if self.amount.present? && self.amount <= auction_lot.minimum_value
@@ -28,5 +29,11 @@ class Bid < ApplicationRecord
 
   def has_previous_bid?
     auction_lot.bids.count >= 1
+  end
+
+  def check_valid_date_for_bid
+    if Date.today < auction_lot.start_date || Date.today > auction_lot.end_date
+      self.errors.add(:amount, "não pode ser registrado fora do periodo do lote")
+    end
   end
 end
