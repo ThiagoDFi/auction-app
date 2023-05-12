@@ -103,7 +103,7 @@ describe 'Usuario faz um lance' do
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
     prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
 
-    bid1 = Bid.create!(amount: 1000, auction_lot: auction_lot, user: user)
+    bid1 = Bid.create!(amount: 1001, auction_lot: auction_lot, user: user)
 
     #Act
     login_as(user)

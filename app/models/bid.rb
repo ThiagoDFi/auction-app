@@ -7,7 +7,7 @@ class Bid < ApplicationRecord
   validate :check_diff, if: :has_previous_bid?
 
   def check_minimum
-    if self.amount.present? && self.amount < auction_lot.minimum_value
+    if self.amount.present? && self.amount <= auction_lot.minimum_value
       self.errors.add(:amount, "deve ser maior que o valor minimo")
     end
   end
