@@ -59,4 +59,16 @@ describe 'Usuario visualiza a tela de resultados' do
     expect(page).to have_content "Encerrado em: #{auction_lot.end_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content 'Valor do lance: R$ 1.500,00'
   end
+  it 'não autenticado deve ser redirecionado' do
+    #Arrange
+
+    #Act
+    visit root_path
+    within('nav') do
+      click_on 'Resultados'
+    end
+
+    #Assert
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

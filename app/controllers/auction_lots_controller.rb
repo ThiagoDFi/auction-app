@@ -89,8 +89,12 @@ class AuctionLotsController < ApplicationController
   end
 
   def customer_results
+    if !current_user.present? 
+      redirect_to new_user_session_path
+    else
     current_user_id = current_user.id
     @auction_lots = AuctionLot.joins(:bids).where("auction_lots.end_date < ? AND auction_lots.status = 5 AND bids.user_id = ?", Date.today, current_user_id)
+    end
   end
 
   private
