@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :bids, only: [:new, :create]
     post 'active', on: :member
     post 'closed', on: :member
+    post 'cancel', on: :member
+    get 'results', on: :collection
   end
 end

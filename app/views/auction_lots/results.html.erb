@@ -1,0 +1,35 @@
+<h1>Validação de resultados dos leilões</h1>
+
+<div class="d-flex flex-row">
+  <% @auction_lots.each do |lot| %>
+    <div class="card m-2 d-flex">
+      <div class="card-body d-flex flex-column">
+        <% if lot.bids.any? %>
+          <% bid = lot.bids.last %>
+          <dl>
+            <dt>Código: </dt>
+            <dd><%= lot.code %></dd>
+            <dt>Encerrado em: </dt>
+            <dd><%= lot.end_date.strftime("%d/%m/%Y") %></dd>
+            <dt>Valor inicial: </dt>
+            <dd><%= number_to_currency lot.minimum_value %></dd>
+            <dt>Ultimo lance: </dt>
+            <dd><%= number_to_currency bid.amount %></dd>
+            <dt>Ganhador: </dt>
+            <dd><%= bid.user.name %></dd>
+          </dl>
+          <%= button_to 'Finalizar', closed_auction_lot_path(lot.id), id: dom_id(lot), class: "btn btn-primary mt-auto" %>
+        <% else %>
+          <dl>
+            <dt>Código: </dt>
+            <dd><%= lot.code %></dd>
+            <dt>Encerrado em: </dt>
+            <dd><%= lot.end_date.strftime("%d/%m/%Y") %></dd>
+            <dt>Nenhum lance registrado.</dt>
+          </dl>
+        <% end %>
+        <%= button_to 'Cancelar', cancel_auction_lot_path(lot.id), id: dom_id(lot), class: "btn btn-danger mt-auto" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -65,6 +65,29 @@ class AuctionLotsController < ApplicationController
     end
   end
 
+  def results
+    @auction_lots = AuctionLot.where('end_date <= ? AND status = ?', Date.today, 1)
+  end
+
+  def closed
+    @auction_lot = AuctionLot.find(params[:id])
+    @auction_lot.closed!
+    redirect_to results_auction_lots_path, notice: "Lote de leilão finalizado com sucesso!"
+  end
+
+  def cancel
+    @auction_lot = AuctionLot.find(params[:id])
+    
+    @auction_lot.product_items.each do |prd_itm|
+      product = Product.find(prd_itm.product_id)
+      product.active!
+    end
+    
+    if @auction_lot.canceled!
+      redirect_to results_auction_lots_path, notice: "Lote de leilão cancelado com sucesso!"
+    end
+  end
+
   private
 
   def check_admin

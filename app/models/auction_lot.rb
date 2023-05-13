@@ -5,7 +5,7 @@ class AuctionLot < ApplicationRecord
   has_many :bids
   accepts_nested_attributes_for :product_items
 
-  enum status: { draft: 0, active: 1, started: 2, closed: 5}
+  enum status: { draft: 0, active: 1, started: 2, canceled: 3, closed: 5}
   
   validates :code, :start_date, :end_date, :minimum_value, :diff_value, :admin_record, presence: true
   validates :code, uniqueness: true
