@@ -40,4 +40,31 @@ describe 'Usuário visita a inical' do
     expect(page).to have_content "Inicio: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
     expect(page).to have_link "Ver Detalhes"
   end
+  it 'e ve os links na Nav-bar' do
+    #Arrange
+
+    #Act
+    visit root_path
+
+    #Assert
+    within('nav') do
+      expect(page).to have_content 'Site do Leilão'
+      expect(page).to have_content 'Produtos'
+      expect(page).not_to have_content 'Lote de leilão'
+    end
+  end
+  it 'e quando admin ve link na Nav bar' do
+    #Arrange
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+    registry_code: '52059095018', role: "admin")
+
+    #Act
+    login_as(admin)
+    visit root_path
+
+    #Assert
+    expect(page).to have_content 'Site do Leilão'
+    expect(page).to have_content 'Produtos'
+    expect(page).to have_content 'Lote de leilão'
+  end
 end
