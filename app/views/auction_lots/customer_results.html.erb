@@ -1,0 +1,21 @@
+<h2>Lotes que voce ganhou!</h2>
+
+<div class="row">
+  <% @auction_lots.each do |lot| %>
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <% bid = lot.bids.last %>
+          <dl class="row mb-0">
+            <dt class="col-sm-6">Código do lote:</dt>
+            <dd class="col-sm-6"><%= link_to lot.code, lot%></dd>
+            <dt class="col-sm-6">Encerrado em:</dt>
+            <dd class="col-sm-6"><%= lot.end_date.strftime("%d/%m/%Y") %></dd>
+            <dt class="col-sm-6">Valor do lance:</dt>
+            <dd class="col-sm-6"><%= number_to_currency bid.amount %></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

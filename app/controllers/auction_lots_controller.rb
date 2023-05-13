@@ -66,7 +66,7 @@ class AuctionLotsController < ApplicationController
   end
 
   def results
-    @auction_lots = AuctionLot.where('end_date <= ? AND status = ?', Date.today, 1)
+    overdue_lot_query
   end
 
   def closed
@@ -88,6 +88,11 @@ class AuctionLotsController < ApplicationController
     end
   end
 
+  def customer_results
+    current_user_id = current_user.id
+    @auction_lots = AuctionLot.joins(:bids).where("auction_lots.end_date < ? AND auction_lots.status = 5 AND bids.user_id = ?", Date.today, current_user_id)
+  end
+
   private
 
   def check_admin
@@ -95,5 +100,9 @@ class AuctionLotsController < ApplicationController
       flash[:notice] = "Apenas usuarios admin tem acesso a essa ação"
       return redirect_to root_path
     end
+  end
+
+  def overdue_lot_query
+    @auction_lots = AuctionLot.where('end_date <= ? AND status = ?', Date.today, 1)
   end
 end

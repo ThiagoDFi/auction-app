@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     post 'closed', on: :member
     post 'cancel', on: :member
     get 'results', on: :collection
+    get 'customer_results', on: :collection
   end
 end
