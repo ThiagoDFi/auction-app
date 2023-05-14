@@ -9,10 +9,10 @@ describe 'Usuário se autentica' do
     #Act
     visit root_path
     click_on 'Entrar'
-    within('form') do
-    fill_in 'E-mail', with: 'thiago@email.com'
-    fill_in 'Senha', with: 'password'
-    click_on 'Entrar'
+    within('#login-form') do
+      fill_in 'E-mail', with: 'thiago@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
     end
 
     #Assert
@@ -33,7 +33,7 @@ describe 'Usuário se autentica' do
     click_on 'Entrar'
     fill_in 'E-mail', with: 'thiago@email.com'
     fill_in 'Senha', with: 'password'
-    within('form') do
+    within('#login-form') do
       click_on 'Entrar'
     end
     click_on 'Sair'
