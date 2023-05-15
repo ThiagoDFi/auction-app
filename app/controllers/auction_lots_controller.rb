@@ -97,6 +97,11 @@ class AuctionLotsController < ApplicationController
     end
   end
 
+  def search
+    @key = params["query"]
+    @auction_lots = AuctionLot.joins(:products).where("products.name LIKE ?", "%#{@key}%")
+  end
+
   private
 
   def check_admin

@@ -16,10 +16,10 @@
           <%= link_to 'Resultados', results_auction_lots_path, class: 'nav-link text-truncate' %>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <%= form_with(url: search_auction_lots_path, method: :get) do |f|%>
+        <%= f.text_field :query, placeholder: 'Busque um produto' %>
+        <%= f.submit 'Buscar' %>
+      <% end %>
       <% if user_signed_in? %>
         <span class="navbar-text mx-3">Olá <%= current_user.name %></span>
         <%= button_to 'Sair', destroy_user_session_path, method: :delete, class:"btn btn-light"%>

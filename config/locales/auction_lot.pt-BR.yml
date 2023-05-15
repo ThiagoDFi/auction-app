@@ -2,9 +2,12 @@ pt-BR:
   draft: "Aguardando aprovação"
   active: "Ativo"
   closed: "Encerrado"
+  canceled: "Cancelado"
   activerecord:
     models:
-      auction_lot: Lote de Leilão
+      auction_lot: 
+        one: Lote de Leilão
+        other: Lotes de Leilão
     attributes:
       auction_lot:
         code: "Código do Leilão"

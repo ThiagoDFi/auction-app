@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     post 'cancel', on: :member
     get 'results', on: :collection
     get 'customer_results', on: :collection
+    get 'search', on: :collection
   end
 end

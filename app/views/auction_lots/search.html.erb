@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card mt-4">
+      <div class="card-header">
+        <h3 class="card-title">Resultado da Busca por: <%= @key %></h3>
+      </div>
+  <p><%= @auction_lots.count %> <%= AuctionLot.model_name.human(count: @auction_lots.count).downcase%> <%= I18n.t(:found, count: @auction_lots.count)%> </p>
+      <div class="card-body">
+        <% if @auction_lots.any? %>
+          <div>
+            <% @auction_lots.each do |lot| %>
+              <dl>
+                <dt>Código do lote:</dt>
+                <dd><%= link_to lot.code, lot%></dd>
+              </dl>
+            <% end %>
+          </div>
+        <% else %>
+          <p>Nenhum resultado foi encontrado.</p>
+        <% end %>
+      </div>
+      <div class="card-footer">
+      </div>
+    </div>
+  </div>
