@@ -1,6 +1,6 @@
 class AuctionLotsController < ApplicationController
 
-  before_action :check_admin, only: [:edit, :update, :new, :create]
+  before_action :check_admin, only: [:edit, :update, :new, :create, :index]
 
   def index
     @auction_lots = AuctionLot.draft
