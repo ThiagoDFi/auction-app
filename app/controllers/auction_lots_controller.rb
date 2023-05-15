@@ -99,7 +99,7 @@ class AuctionLotsController < ApplicationController
 
   def search
     @key = params["query"]
-    @auction_lots = AuctionLot.joins(:products).where("products.name LIKE ?", "%#{@key}%")
+    @auction_lots = AuctionLot.joins(:products).where("products.name LIKE ? OR auction_lots.code LIKE ? ", "%#{@key}%", "%#{@key}%")
   end
 
   private
