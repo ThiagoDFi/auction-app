@@ -3,7 +3,7 @@ class AuctionLotsController < ApplicationController
   before_action :check_admin, only: [:edit, :update, :new, :create]
 
   def index
-    @auction_lots = AuctionLot.all
+    @auction_lots = AuctionLot.draft
   end
 
   def show

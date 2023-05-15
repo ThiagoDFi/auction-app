@@ -61,7 +61,7 @@ describe 'Admin edita um lote de leilão' do
                     minimum_value: 1000, diff_value: 300, code: 'GRU123456',
                     admin_record: 'pedro@leilaodogalpao.com.br',
                     admin_approve: 'admin@leilaodogalpao.com.br',
-                    status: :draft)
+                    status: :active)
 
     prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
     prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)

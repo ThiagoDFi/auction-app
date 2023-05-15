@@ -72,4 +72,29 @@ describe 'Admin revisa o lote de leilão' do
     expect(page).to have_content "Voce não pode aprovar esse lote"
     expect(page).not_to have_content "Aprovado por: pedro@leilaodogalpao.com.br"
   end
+  it 'e visualiza apenas lotes aguardando a aprovação' do
+    #Arrange
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '27858256084', role: "admin")
+
+    auction_lot1 = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+    minimum_value: 1000, diff_value: 300, code: 'GRU123456',
+    admin_record: 'pedro@leilaodogalpao.com.br',
+    status: :draft)
+
+    auction_lot2 = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+    minimum_value: 1000, diff_value: 300, code: 'BRA123456',
+    admin_record: 'pedro@leilaodogalpao.com.br',
+    admin_approve: 'admin@leilaodogalpao.com.br',
+    status: :active)
+
+    #Act
+    login_as(admin)
+    visit root_path
+    click_on 'Lote de leilão'
+
+    #Assert
+    expect(page).to have_content "GRU123456"
+    expect(page).not_to have_content "BRA123456"
+  end
 end

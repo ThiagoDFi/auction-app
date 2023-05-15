@@ -118,8 +118,7 @@ describe 'Admin adiciona itens a um lote' do
     #Act
     login_as(admin)
     visit root_path
-    click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
     expect(page).not_to have_link "Adicionar Items"
