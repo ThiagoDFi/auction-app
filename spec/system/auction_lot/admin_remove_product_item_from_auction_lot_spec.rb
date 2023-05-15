@@ -28,7 +28,7 @@ describe 'Admin remove um product item' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     find("#product_item_1", text: "Remover").click
 
     #Assert
@@ -61,7 +61,7 @@ describe 'Admin remove um product item' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     find("#product_item_1", text: "Remover").click
     # click_on "Remover #{product1.name}"
 
@@ -96,7 +96,7 @@ describe 'Admin remove um product item' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     find("#product_item_1", text: "Remover").click
     product1.reload
 

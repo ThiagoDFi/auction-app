@@ -18,7 +18,7 @@ describe 'Admin adiciona itens a um lote' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Adicionar Items'
     select 'Tv 40', from: 'Produtos'
     click_on 'Gravar'
@@ -54,7 +54,7 @@ describe 'Admin adiciona itens a um lote' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
     expect(current_path).to eq auction_lot_path(auction_lot.id)
@@ -84,7 +84,7 @@ describe 'Admin adiciona itens a um lote' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Adicionar Items'
 
     #Assert

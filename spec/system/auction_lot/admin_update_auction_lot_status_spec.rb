@@ -27,7 +27,7 @@ describe 'Admin revisa o lote de leilão' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Aprovar'
 
     #Assert
@@ -65,7 +65,7 @@ describe 'Admin revisa o lote de leilão' do
     login_as(pedro)
     visit root_path
     click_on 'Lote de leilão'
-    click_on auction_lot.code
+    find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Aprovar'
 
     #Assert
@@ -82,7 +82,7 @@ describe 'Admin revisa o lote de leilão' do
     admin_record: 'pedro@leilaodogalpao.com.br',
     status: :draft)
 
-    auction_lot2 = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+    auction_lot2 = AuctionLot.create!(start_date: 4.days.from_now, end_date: 4.months.from_now,
     minimum_value: 1000, diff_value: 300, code: 'BRA123456',
     admin_record: 'pedro@leilaodogalpao.com.br',
     admin_approve: 'admin@leilaodogalpao.com.br',
@@ -94,7 +94,11 @@ describe 'Admin revisa o lote de leilão' do
     click_on 'Lote de leilão'
 
     #Assert
-    expect(page).to have_content "GRU123456"
+    expect(page).to have_content "Código: GRU123456"
+    expect(page).to have_content "Inicio: #{auction_lot1.start_date.strftime("%d/%m/%Y")}"
+    expect(page).to have_content "Final: #{auction_lot1.end_date.strftime("%d/%m/%Y")}"
     expect(page).not_to have_content "BRA123456"
+    expect(page).not_to have_content "Inicio: #{auction_lot2.start_date.strftime("%d/%m/%Y")}"
+    expect(page).not_to have_content "Final: #{auction_lot2.end_date.strftime("%d/%m/%Y")}"
   end
 end

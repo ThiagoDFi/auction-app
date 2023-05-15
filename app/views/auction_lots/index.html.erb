@@ -15,8 +15,14 @@
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-body">
-              <h5 class="card-title"><%= link_to lot.code, lot %></h5>
-              <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary" %>
+              <h5 class="card-title">Código: <%= lot.code%></h5>
+              <dl>
+                <dt>Inicio: </dt>
+                <dd><%= I18n.localize lot.start_date%></dd>
+                <dt>Final: </dt>
+                <dd><%= I18n.localize lot.end_date%></dd>
+              </dl>
+              <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
             </div>
           </div>
         </div>

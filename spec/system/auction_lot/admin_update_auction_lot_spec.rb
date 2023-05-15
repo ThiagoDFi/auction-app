@@ -25,7 +25,7 @@ describe 'Admin edita um lote de leilão' do
     login_as(admin)
     visit root_path
     click_on 'Lote de leilão'
-    click_on 'GRU123456'
+    find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Editar'
     fill_in 'Data final do lote', with: 8.months.from_now
     fill_in 'Valor minimo', with: 4000
