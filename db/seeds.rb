@@ -102,6 +102,8 @@ auction_lot1 = AuctionLot.create!(start_date: Date.today, end_date: 2.months.fro
 
 proditem1 = ProductItem.create!(product: product1, auction_lot: auction_lot1)
 
+product1.update(status: :inactive)
+
 auction_lot2 = AuctionLot.create!(start_date: 2.days.ago, end_date: 1.months.from_now,
                                  minimum_value: 1000, diff_value: 300, code: 'BRA123456',
                                  admin_record: 'thiago@leilaodogalpao.com.br',
@@ -110,6 +112,9 @@ auction_lot2 = AuctionLot.create!(start_date: 2.days.ago, end_date: 1.months.fro
 
 proditem2 = ProductItem.create!(product: product2, auction_lot: auction_lot2)
 proditem3 = ProductItem.create!(product: product3, auction_lot: auction_lot2)
+
+product2.update(status: :inactive)
+product3.update(status: :inactive)
 
 # Criação de lotes ativos futuros e Product_items
 
@@ -121,6 +126,8 @@ auction_lot3 = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.month
 
 proditem4 = ProductItem.create!(product: product4, auction_lot: auction_lot3)
 
+product4.update(status: :inactive)
+
 auction_lot4 = AuctionLot.create!(start_date: 6.days.from_now, end_date: 1.months.from_now,
                                  minimum_value: 1000, diff_value: 300, code: 'GDH894512',
                                  admin_record: 'thiago@leilaodogalpao.com.br',
@@ -128,6 +135,8 @@ auction_lot4 = AuctionLot.create!(start_date: 6.days.from_now, end_date: 1.month
                                  status: :active)
 
 proditem5 = ProductItem.create!(product: product5, auction_lot: auction_lot4)
+
+product5.update(status: :inactive)
 
 # Criação de lotes aguardando a aprovação
 
@@ -138,12 +147,16 @@ auction_lot5 = AuctionLot.create!(start_date: 4.days.from_now, end_date: 45.days
 
 proditem6 = ProductItem.create!(product: product6, auction_lot: auction_lot5)
 
+product6.update(status: :inactive)
+
 auction_lot6 = AuctionLot.create!(start_date: 8.days.from_now, end_date: 45.days.from_now,
                                  minimum_value: 1000, diff_value: 300, code: 'POS965420',
                                  admin_record: 'thiago@leilaodogalpao.com.br',
                                  status: :draft)
 
 proditem7 = ProductItem.create!(product: product7, auction_lot: auction_lot6)
+
+product7.update(status: :inactive)
 
 # Criação de lotes com lance
 
@@ -154,6 +167,8 @@ auction_lot7 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.from
                                  status: :active)
 
 proditem8 = ProductItem.create!(product: product8, auction_lot: auction_lot7)
+
+product8.update(status: :inactive)
 
 bid1 = Bid.create!(amount: 1100, user: maria, auction_lot: auction_lot7)
 bid2 = Bid.create!(amount: 1500, user: carlos, auction_lot: auction_lot7)
@@ -169,6 +184,9 @@ auction_lot8 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.from
 proditem9 = ProductItem.create!(product: product9, auction_lot: auction_lot8)
 proditem10 = ProductItem.create!(product: product10, auction_lot: auction_lot8)
 
+product9.update(status: :inactive)
+product10.update(status: :inactive)
+
 bid1 = Bid.create!(amount: 1050, user: carlos, auction_lot: auction_lot8)
 bid2 = Bid.create!(amount: 1400, user: maria, auction_lot: auction_lot8)
 
@@ -183,6 +201,8 @@ auction_lot9 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.ago,
 
 proditem11 = ProductItem.create!(product: product11, auction_lot: auction_lot9)
 
+product11.update(status: :inactive)
+
 auction_lot10 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.ago,
                                  minimum_value: 1000, diff_value: 300, code: 'UDF127845',
                                  admin_record: 'thiago@leilaodogalpao.com.br',
@@ -190,6 +210,8 @@ auction_lot10 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.ago
                                  status: :active)
 
 proditem12 = ProductItem.create!(product: product12, auction_lot: auction_lot10)
+
+product12.update(status: :inactive)
 
 
 

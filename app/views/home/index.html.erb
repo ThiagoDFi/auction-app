@@ -39,6 +39,7 @@
                 <div class="card-body">
                   <p class="card-text">Código: <%= lot.code %></p>
                   <p class="card-text">Inicio: <%= lot.start_date.strftime("%d/%m/%Y") %></p>
+                  <p class="card-text">Final: <%= lot.end_date.strftime("%d/%m/%Y") %></p>
                   <p class="card-text">Categoria: <%= pdi.product.category %></p>
                   <div class="alert alert-success" role="alert">
                     <p class="card-text">Status: <%= I18n.t(lot.status) %></p>
