@@ -115,8 +115,6 @@ O cliente por sua vez possui suas ações limitadas a realizar lances em lotes d
 
 ## Tarefas em aberto
 
-Se for o caso, liste tarefas/funcionalidades que ainda precisam ser implementadas na sua aplicação
-
 :memo: Dúvidas sobre um lote
 
 :memo: Bloqueio de CPF 
