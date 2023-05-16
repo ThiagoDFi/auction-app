@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :check_admin, only: [:new, :create, :index, :show]
+
   def index
     @products = Product.all
   end
@@ -10,10 +12,6 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    unless current_user.admin?
-      flash[:notice] = "Apenas usuarios admin podem criar um produto"
-      redirect_to root_path
-    end
   end
 
   def create
@@ -27,5 +25,12 @@ class ProductsController < ApplicationController
       flash.now[:notice] = "Produto não cadastado."
       render 'new'
     end                                          
+  end
+
+  def check_admin
+    unless current_user.admin?
+      flash[:notice] = "Apenas usuarios admin podem criar um produto"
+      redirect_to root_path
+    end
   end
 end

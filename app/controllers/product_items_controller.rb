@@ -1,5 +1,7 @@
 class ProductItemsController < ApplicationController
 
+  before_action :check_admin, only: [:new, :create, :destroy]
+
   def new
     @auction_lot = AuctionLot.find(params[:auction_lot_id])
     @product_item = ProductItem.new
@@ -26,5 +28,12 @@ class ProductItemsController < ApplicationController
     @product_item.destroy
     @product_item.product.active!
     redirect_to @auction_lot, notice: 'Item removido com sucesso.'
+  end
+
+  def check_admin
+    unless current_user.admin?
+      flash[:notice] = "Apenas usuarios admin tem acesso a essa ação"
+      return redirect_to root_path
+    end
   end
 end
