@@ -21,7 +21,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-  O projeto é uma aplicação web com Ruby on Rails que serve para conectar o publico com itens que são abandonados, permitindo que esses items sejam comercializados novamento. O formato escolhido foi o de leilão de itens. Este projeto faz parte da primeira etapa de treinamento do TreinaDev.
+  O projeto é uma aplicação web com Ruby on Rails que serve para conectar o público com itens que são abandonados, permitindo que esses itens sejam comercializados novamente. O formato escolhido foi o de leilão de itens. Este projeto faz parte da primeira etapa de treinamento do TreinaDev.
 </p>
 
 ## Funcionalidades
@@ -110,7 +110,7 @@ $ rspec
 
 ## Casos de Uso
 
-A aplicação contem dois tipos de usuarios, o administrador e o cliente, cada perfil possui visualizações e ações diferentes. O administrador é responsavel por gerenciar o site, sendo assim, apenas usuarios administrados são capazes de cadastrar produtos, lots , adicionar item , aprovar e finalizar um lote, por ser um perfil de gerenciamento ele não pode realizar lances em lotes disponiveis, todo usuario que se cadastrar na plataforma com o dominio @leilaodogalpao.com.br são automaticamente adicionados ao perfil de administrador.
+A aplicação contém dois tipos de usuários, o administrador e o cliente. Cada perfil possui visualizações e ações diferentes. O administrador é responsável por gerenciar o site, sendo assim, apenas usuários administradores são capazes de cadastrar produtos, lotes, adicionar item, aprovar e finalizar um lote. Por ser um perfil de gerenciamento ele não pode realizar lances em lotes disponíveis, todo usuário que se cadastrar na plataforma com o domínio @leilaodogalpao.com.br são automaticamente adicionados ao perfil de administrador.
 
 O cliente por sua vez possui suas ações limitadas a realizar lances em lotes disponiveis, realizar buscas por produtos ou IDs de lotes e consulta se ganhou um lote que tenha participado.
 
