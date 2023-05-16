@@ -7,15 +7,11 @@
    <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=RED&style=for-the-badge"/>
 </p>
 
-> Status do Projeto: :heavy_check_mark: :warning: (concluido, em desenvolvimento, etc)
-
 ### Tópicos 
 
 :small_blue_diamond: [Descrição do projeto](#descrição-do-projeto)
 
 :small_blue_diamond: [Funcionalidades](#funcionalidades)
-
-:small_blue_diamond: [Deploy da Aplicação](#deploy-da-aplicação-dash)
 
 :small_blue_diamond: [Pré-requisitos](#pré-requisitos)
 
@@ -55,9 +51,13 @@ Se ainda não houver deploy, insira capturas de tela da aplicação ou gifs
 
 
 :warning: [Ruby: versão 3.1.1](https://www.ruby-lang.org/en/news/2022/02/18/ruby-3-1-1-released/)
+
 :warning: [Ruby on Rails: versão 7.0.4.3](https://rubygems.org/gems/rails/versions/7.0.4.3)
+
 :warning: [Node](https://nodejs.org/en/download/)
+
 :warning: [Bundler](https://rubygems.org/gems/bundler)
+
 :warning: [SQLite](https://www.sqlite.org/download.html)
 
 ## Como rodar a aplicação :arrow_forward:
