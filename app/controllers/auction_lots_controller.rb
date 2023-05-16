@@ -105,7 +105,7 @@ class AuctionLotsController < ApplicationController
   private
 
   def check_admin
-    unless current_user.admin?
+    unless current_user.present? && current_user.admin?
       flash[:notice] = "Apenas usuarios admin tem acesso a essa ação"
       return redirect_to root_path
     end

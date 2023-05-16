@@ -58,6 +58,7 @@ describe 'Usuario visualiza a tela de resultados' do
     expect(page).to have_content 'Código do lote: GRU123456'
     expect(page).to have_content "Encerrado em: #{auction_lot.end_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content 'Valor do lance: R$ 1.500,00'
+    expect(page).to have_content 'Status: Encerrado'
   end
   it 'não autenticado deve ser redirecionado' do
     #Arrange

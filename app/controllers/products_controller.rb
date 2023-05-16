@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   end
 
   def check_admin
-    unless current_user.admin?
+    unless current_user.present? && current_user.admin?
       flash[:notice] = "Apenas usuarios admin podem criar um produto"
       redirect_to root_path
     end

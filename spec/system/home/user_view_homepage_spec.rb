@@ -50,7 +50,8 @@ describe 'Usuário visita a inical' do
     #Assert
     within('nav') do
       expect(page).to have_content 'Site do Leilão'
-      expect(page).to have_content 'Produtos'
+      expect(page).to have_content 'Resultados'
+      expect(page).not_to have_content 'Produtos'
       expect(page).not_to have_content 'Lote de leilão'
     end
   end

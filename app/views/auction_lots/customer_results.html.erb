@@ -13,6 +13,8 @@
             <dd class="col-sm-6"><%= lot.end_date.strftime("%d/%m/%Y") %></dd>
             <dt class="col-sm-6">Valor do lance:</dt>
             <dd class="col-sm-6"><%= number_to_currency bid.amount %></dd>
+            <dt class="col-sm-6">Status:</dt>
+            <dd class="col-sm-6"><%= I18n.t(lot.status) %></dd>
           </dl>
         </div>
       </div>
