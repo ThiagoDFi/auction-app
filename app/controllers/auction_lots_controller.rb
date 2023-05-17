@@ -57,11 +57,13 @@ class AuctionLotsController < ApplicationController
     @auction_lot = AuctionLot.find(params[:id])
     if @auction_lot.admin_record == current_user.email
       redirect_to @auction_lot, notice: "Voce não pode aprovar esse lote"
-    else
+    elsif @auction_lot.product_items.any?
       @auction_lot.active!
       @auction_lot.admin_approve = current_user.email
       @auction_lot.save
       redirect_to @auction_lot
+    else
+      redirect_to @auction_lot, notice: "O lote não pode ser aprovado sem ter ao menos um produto vinculados."
     end
   end
 

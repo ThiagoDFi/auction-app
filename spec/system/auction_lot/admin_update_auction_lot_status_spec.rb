@@ -101,4 +101,25 @@ describe 'Admin revisa o lote de leilão' do
     expect(page).not_to have_content "Inicio: #{auction_lot2.start_date.strftime("%d/%m/%Y")}"
     expect(page).not_to have_content "Final: #{auction_lot2.end_date.strftime("%d/%m/%Y")}"
   end
+  it 'e falha caso não tenha product_item' do
+    #Arrange
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+    registry_code: '27858256084', role: "admin")
+
+    auction_lot1 = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+    minimum_value: 1000, diff_value: 300, code: 'GRU123456',
+    admin_record: 'pedro@leilaodogalpao.com.br',
+    status: :draft)
+
+    #Act
+    login_as(admin)
+    visit root_path
+    click_on 'Lote de leilão'
+    find("#auction_lot_1", text: "Ver Detalhes").click
+    click_on 'Aprovar'
+
+    #Assert
+    expect(page).to have_content "O lote não pode ser aprovado sem ter ao menos um produto vinculados."
+    expect(page).to have_content "Aguardando aprovação"
+  end
 end

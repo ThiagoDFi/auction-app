@@ -1,9 +1,11 @@
 <div class="container mt-4">
   <%= link_to 'Voltar', root_path, class: "btn btn-secondary mr-2 mt-3 mr-auto" %>
   <div class="btn-group" role="group" aria-label="Ações">
-    <%= form_with url: favorites_path, method: :post do |form| %>
-      <%= form.hidden_field :auction_lot_id, value: @auction_lot.id %>
-      <%= form.submit "Favoritar", class: "btn btn-info mt-3" %>
+  <% if current_user.present? && current_user.customer?%>
+      <%= form_with url: favorites_path, method: :post do |form| %>
+        <%= form.hidden_field :auction_lot_id, value: @auction_lot.id %>
+        <%= form.submit "Favoritar", class: "btn btn-info mt-3" %>
+      <% end %>
     <% end %>
   </div>
 
