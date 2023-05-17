@@ -30,7 +30,7 @@ describe 'Usuario ve os detalhes de um lot' do
     find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
-    expect(page).to have_content "Data inicio: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
+    expect(page).to have_content "Data de início: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Data final do lote: #{auction_lot.end_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 300,00"
@@ -75,7 +75,7 @@ describe 'Usuario ve os detalhes de um lot' do
     find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
-    expect(page).to have_content "Data inicio: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
+    expect(page).to have_content "Data de início: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Data final do lote: #{auction_lot.end_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 300,00"
@@ -121,7 +121,7 @@ describe 'Usuario ve os detalhes de um lot' do
     find("#auction_lot_1", text: "Ver Detalhes").click
 
     #Assert
-    expect(page).to have_content "Data inicio: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
+    expect(page).to have_content "Data de início: #{auction_lot.start_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Data final do lote: #{auction_lot.end_date.strftime("%d/%m/%Y")}"
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 300,00"

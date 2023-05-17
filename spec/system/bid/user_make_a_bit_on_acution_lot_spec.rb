@@ -73,7 +73,7 @@ describe 'Usuario faz um lance' do
 
     #Assert
     expect(page).to have_content "Lance enviado com sucesso!"
-    expect(page).to have_content "Ultimo lance: R$ 1.500,00"
+    expect(page).to have_content "Último lance: R$ 1.500,00"
   end
   it 'e informa um valor não permitido' do
     #Arrange

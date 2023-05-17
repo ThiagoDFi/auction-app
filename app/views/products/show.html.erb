@@ -16,7 +16,7 @@
         <dt>SKU:</dt>
         <dd><%= @product.code %></dd>
         <dt>Status:</dt>
-        <dd><%= @product.status %></dd>
+        <dd><%= I18n.t(@product.status) %></dd>
       </dl>
     </div>
     <% if @product.photo.attached? %>

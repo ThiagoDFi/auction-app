@@ -43,7 +43,7 @@ describe 'Administrador cadastra lote de leião' do
     #Assert
     expect(page).to have_content "Cadastro do lote de leilão efetuado com sucesso."
     expect(page).to have_content "Código do Leilão: SAM123456"
-    expect(page).to have_content "Data inicio: #{4.day.from_now.strftime('%d/%m/%Y')}"
+    expect(page).to have_content "Data de início: #{4.day.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "Data final do lote: #{2.months.from_now.strftime('%d/%m/%Y')}"
     expect(page).to have_content "Valor mínimo: R$ 1.000,00"
     expect(page).to have_content "Valor diferença: R$ 200,00"

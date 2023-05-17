@@ -1,4 +1,6 @@
 pt-BR:
+  inactive: "Inativo"
+  active: "Ativo"
   found: 
     one: 'encontrado'
     other: 'encontrados'

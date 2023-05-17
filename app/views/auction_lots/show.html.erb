@@ -1,4 +1,12 @@
 <div class="container mt-4">
+  <%= link_to 'Voltar', root_path, class: "btn btn-secondary mr-2 mt-3 mr-auto" %>
+  <div class="btn-group" role="group" aria-label="Ações">
+    <%= form_with url: favorites_path, method: :post do |form| %>
+      <%= form.hidden_field :auction_lot_id, value: @auction_lot.id %>
+      <%= form.submit "Favoritar", class: "btn btn-info mt-3" %>
+    <% end %>
+  </div>
+
   <div class="row">
     <div class="col-12">
       <h3>Código do Leilão: <%= @auction_lot.code %></h3>
@@ -8,84 +16,71 @@
   <div class="row no-gutters">
     <div class="col-md-6">
       <dl class="row">
-        <dt class="col-sm-3">Data inicio: </dt>
-        <dd class="col-sm-9"><%= I18n.localize@auction_lot.start_date %></dd>
-        <dt class="col-sm-3">Data final do lote: </dt>
-        <dd class="col-sm-9"><%= I18n.localize@auction_lot.end_date %></dd>
-        <dt class="col-sm-3">Valor mínimo: </dt>
-        <dd class="col-sm-9"><%= number_to_currency @auction_lot.minimum_value %></dd>
-        <dt class="col-sm-3">Valor diferença: </dt>
-        <dd class="col-sm-9"><%= number_to_currency @auction_lot.diff_value %></dd>
-        <dt class="col-sm-3">Responsável: </dt>
+        <dt class="col-sm-3">Data de início:</dt>
+        <dd class="col-sm-9"><%= I18n.localize(@auction_lot.start_date) %></dd>
+        <dt class="col-sm-3">Data final do lote:</dt>
+        <dd class="col-sm-9"><%= I18n.localize(@auction_lot.end_date) %></dd>
+        <dt class="col-sm-3">Valor mínimo:</dt>
+        <dd class="col-sm-9"><%= number_to_currency(@auction_lot.minimum_value) %></dd>
+        <dt class="col-sm-3">Valor diferença:</dt>
+        <dd class="col-sm-9"><%= number_to_currency(@auction_lot.diff_value) %></dd>
+        <dt class="col-sm-3">Responsável:</dt>
         <dd class="col-sm-9"><%= @auction_lot.admin_record %></dd>
-        <dt class="col-sm-3">Aprovado por: </dt>
+        <dt class="col-sm-3">Aprovado por:</dt>
         <dd class="col-sm-9"><%= @auction_lot.admin_approve %></dd>
-        <dt class="col-sm-3">Status: </dt>
+        <dt class="col-sm-3">Status:</dt>
         <dd class="col-sm-9"><%= I18n.t(@auction_lot.status) %></dd>
+        <% if @auction_lot.active? %>
+          <dt class="col-sm-3">Último lance:</dt>
+          <% unless @amount.nil? %>
+            <dd class="col-sm-9"><%= number_to_currency(@amount.amount) %></dd>
+          <% else %>
+            <dd class="col-sm-9">Nenhum lance foi dado até o momento</dd>
+          <% end %>
+        <% end %>
       </dl>
+
+      <% if @auction_lot.active? %>
+        <%= form_with(model: [@auction_lot, @bid], local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :amount, "Valor do lance" %>
+            <%= f.number_field :amount, class: "form-control", size: 10, style: "width: 150px;" %>
+          </div>
+          <%= f.submit "Enviar lance", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
     </div>
-    
+
     <div class="col-md-6">
-      <% @auction_lot.product_items.each do |item|%>
+      <% @auction_lot.product_items.each do |item| %>
         <div class="col-md-6 col-lg-4 mb-3">
-          <div class="card mr-3">
-            <div class="media">
-              <%= image_tag(item.product.photo, class: "mr-3", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
-              <div class="media-body">
-                <%= button_to "Remover", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete, class:"btn btn-danger", id: dom_id(item)%>
-                <h5 class="card-title"><%= item.product.name %></h5>
-                <p class="card-text"><%= item.product.description %></p>
-                <p class="card-text">Categoria: <%= item.product.category %></p>
-                <p class="card-text">Dimensões: <%= dimension(item.product.height, item.product.width, item.product.depth) %></p>
-                <p class="card-text">Peso: <%= item.product.weight %>g</p>
-              </div>
+          <div class="card">
+            <%= image_tag(item.product.photo, class: "card-img-top", alt: "product image", style: "height: 100%; width: 100%; object-fit: cover;") %>
+            <div class="card-body">
+              <%= button_to "Remover", auction_lot_product_item_path(auction_lot_id: @auction_lot, id: item), method: :delete, class: "btn btn-danger", id: dom_id(item) %>
+              <h5 class="card-title"><%= item.product.name %></h5>
+              <p class="card-text"><%= item.product.description %></p>
+              <p class="card-text">Categoria: <%= item.product.category %></p>
+              <p class="card-text">Dimensões: <%= dimension(item.product.height, item.product.width, item.product.depth) %></p>
+              <p class="card-text">Peso: <%= item.product.weight %>g</p>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-
-    <% if @auction_lot.active? %>
-    <div>
-      <dl>
-        <dt class="col-sm-3">Ultimo lance: </dt>
-        <% unless @amount.nil? %>
-        <dd class="col-sm-9"><%= number_to_currency @amount.amount %></dd>
-        <% else %>
-        <dd class="col-sm-9">Nenhum lance foi dado até o momento</dd>
-        <% end %>
-      </dl>
-    </div>
-  <%= form_with(model: [@auction_lot, @bid], local: true) do |f| %>
-
-    <div class="form-group">
-      <%= f.label :amount, "Valor do lance" %>
-      <%= f.number_field :amount, class: "form-control", size: 10 %>
-    </div>
-
-    <%= f.submit "Enviar lance", class: "btn btn-primary" %>
-  <% end %>
-  <% end %>
-</div>
-<%= link_to 'Voltar', root_path %>
-<%= form_with url: favorites_path, method: :post do |form| %>
-  <%= form.hidden_field :auction_lot_id, value: @auction_lot.id %>
-  <%= form.submit "Favoritar" %>
-<% end %>
- </div>
-    <% if @auction_lot.draft?%>
-      <% if current_user.present? && current_user.admin?%>
-        <div class="col-md-6">
-          <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary" %>
-        </div>
-
-        <div class="col-md-6">
-          <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class:"btn btn-warning" %>
-        </div>
-        <div class="col-md-6">
-          <%= button_to 'Aprovar', active_auction_lot_path(@auction_lot.id) %>
-        </div>
-      <% end %>
-    <% end %>
   </div>
+
+  <% if @auction_lot.draft? %>
+    <% if current_user.present? && current_user.admin? %>
+      <div class="row mt-3">
+        <div class="col-md-12 d-flex justify-content-between">
+          <div class="btn-group">
+            <%= link_to 'Editar', edit_auction_lot_path, class: "btn btn-primary mr-2" %>
+            <%= link_to 'Adicionar Items', new_auction_lot_product_item_path(auction_lot_id: @auction_lot.id), class: "btn btn-warning mr-2 ms-2" %>
+            <%= button_to 'Aprovar', active_auction_lot_path(@auction_lot.id), class: "btn btn-success mr-2 ms-2" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 </div>
