@@ -74,4 +74,18 @@ describe 'Administrador cadastra lote de leião' do
     expect(page).to have_content "Falha ao criar o lote de leilão"
     expect(page).to have_content "Código do Leilão Inválido"
   end
+  it 'e volta a tela inicial' do
+    #Arrange
+    admin = User.create!(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '31350282081', role: 'admin')
+
+    #Act
+    login_as(admin)
+    visit root_path
+    click_on 'Lote de leilão'
+    click_on 'Voltar'
+
+    #Assert
+    expect(current_path).to eq(root_path)
+  end
 end

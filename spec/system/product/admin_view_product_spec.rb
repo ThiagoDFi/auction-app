@@ -42,10 +42,9 @@ describe 'Admin acessa produtos' do
     login_as(admin)
     visit root_path
     click_on 'Produtos'
-    click_on 'Site do Leilão'
+    click_on 'Voltar'
 
     #Assert
-    expect(page).to have_content 'Site do Leilão'
-    expect(page).to have_link('Site do Leilão', href: root_path)
+    expect(current_path).to eq(root_path)
   end
 end

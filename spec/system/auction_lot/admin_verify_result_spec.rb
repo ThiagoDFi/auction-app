@@ -260,4 +260,18 @@ describe 'admin verifica resultados' do
     #Assert
     expect(result).to eq("active")
   end
+  it 'e volta a pagina inicial' do
+    #Arrange
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+                         registry_code: '52059095018', role: "admin")
+
+    #Act
+    login_as(admin)
+    visit root_path
+    click_on 'Resultados'
+    click_on 'Voltar'
+
+    #Assert
+    expect(current_path).to eq(root_path)
+  end
 end

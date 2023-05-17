@@ -72,4 +72,18 @@ describe 'Usuario visualiza a tela de resultados' do
     #Assert
     expect(current_path).to eq(new_user_session_path)
   end
+  it 'e volta a pagina inicial' do
+    #Arrange
+    user = User.create!(name: 'Maria', email: 'maria@gmail.com', password: 'password',
+                        registry_code: '07699032071')
+
+    #Act
+    login_as(user)
+    visit root_path
+    click_on 'Resultados'
+    click_on 'Voltar'
+
+    #Assert
+    expect(current_path).to eq(root_path)
+  end
 end

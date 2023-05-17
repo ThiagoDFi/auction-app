@@ -9,17 +9,12 @@ describe 'Admin edita um lote de leilão' do
                          weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia')
     product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
     product.save!
-    
-    product2 = Product.new(name: 'Playstation 5', description: 'Video Game ultima geração',
-                          weight: 70, width: 10, height: 60, depth: 10, category: 'Tecnologia')                     
-    product2.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
-    product2.save!  
 
-    auction_lot = AuctionLot.new(start_date: Date.today, end_date: 2.months.from_now,
+    auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
                                      minimum_value: 1000, diff_value: 300, code: 'GRU123456',
                                      admin_record: 'pedro@leilaodogalpao.com.br')
-    auction_lot.products << product2
-    auction_lot.save!
+    
+    product_item = ProductItem.create!(auction_lot: auction_lot, product: product)
 
     #Act
     login_as(admin)

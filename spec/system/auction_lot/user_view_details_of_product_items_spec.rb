@@ -132,4 +132,28 @@ describe 'Usuario ve os detalhes de um lot' do
     expect(page).to have_content "Categoria: Tecnologia"
     expect(page).to have_content "Status: Ativo"
   end
+  it 'e volta para tela inicial' do
+    #Arrange
+    product = Product.new(name: 'Playstation 5', description: 'Video Game ultima geração',
+                           weight: 70, width: 10, height: 60, depth: 10, category: 'Tecnologia', status: :inactive)                     
+    product.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
+    product.save! 
+
+    auction_lot = AuctionLot.create!(start_date: 2.days.from_now, end_date: 2.months.from_now,
+              minimum_value: 1000, diff_value: 300, code: 'GRU123456',
+              admin_record: 'pedro@leilaodogalpao.com.br',
+              admin_approve: 'admin@leilaodogalpao.com.br',
+              status: :active)
+
+    prod1 = ProductItem.create!(product: product, auction_lot: auction_lot)
+
+
+    #Act
+    visit root_path
+    find("#auction_lot_1", text: "Ver Detalhes").click
+    click_on 'Voltar'
+
+    #Assert
+    expect(current_path).to eq root_path
+  end
 end
