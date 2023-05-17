@@ -2,6 +2,8 @@ class AuctionLot < ApplicationRecord
   has_many :product_items, dependent: :destroy
   has_many :products, through: :product_items
   has_many :auction_lots, through: :product_items
+  has_many :favorites
+  has_many :users, through: :favorites
   has_many :bids
   accepts_nested_attributes_for :product_items
 

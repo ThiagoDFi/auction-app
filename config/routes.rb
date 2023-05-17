@@ -17,4 +17,5 @@ Rails.application.routes.draw do
     get 'customer_results', on: :collection
     get 'search', on: :collection
   end
+  resources :favorites, only: [:index, :create, :destroy]
 end

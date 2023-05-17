@@ -1,0 +1,34 @@
+<h2>Seus lotes favoritos</h2>
+
+<% if @favorites.any? %>
+  <div class="row">
+<% @favorites.each do |favorite| %>
+  <% lot = favorite.auction_lot %>
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Código: <%= lot.code %></h5>
+        <dl>
+          <dt>Categoria:</dt>
+          <% lot.products.each do |product| %>
+            <dd><%= product.category %></dd>
+          <% end %>
+          <dt>Início:</dt>
+          <dd><%= I18n.localize(lot.start_date) %></dd>
+          <dt>Final:</dt>
+          <dd><%= I18n.localize(lot.end_date) %></dd>
+        </dl>
+        <%= link_to 'Ver Detalhes', lot, class: "btn btn-primary", id: dom_id(lot) %>
+        <div class="btn-group" role="group" aria-label="Ações">
+          <%= form_tag(favorite_path(favorite), method: :delete) do %>
+            <%= submit_tag 'Remover', class: 'btn btn-danger', id: dom_id(favorite) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+  </div>
+<% else %>
+  <p>Você ainda não adicionou nenhum lote aos seus favoritos.</p>
+<% end %>

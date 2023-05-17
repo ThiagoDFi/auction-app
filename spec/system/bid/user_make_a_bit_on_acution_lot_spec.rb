@@ -67,7 +67,7 @@ describe 'Usuario faz um lance' do
     #Act
     login_as(user)
     visit root_path
-    first('.btn-primary').click
+    find("#auction_lot_1", text: "Ver Detalhes").click
     fill_in 'Valor do lance', with: 1500
     click_on 'Enviar lance'
 
