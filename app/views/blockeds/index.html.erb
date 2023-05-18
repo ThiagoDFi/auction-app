@@ -10,7 +10,7 @@
     <%= f.text_field :query, placeholder: 'Busque um CPF' %>
     <%= f.submit 'Procurar' %>
   <% end %>
-
+<% if @registry_code.any? %>
   <% @registry_code.each do |doc|%>
     <dl>
       <dt>Numero do documento: </dt>
@@ -21,6 +21,9 @@
         <%= form.submit "Bloquear", class: "btn btn-info mt-3" %>
       <% end %>
   <% end %>
+<% else %>
+  <p>Nenhum registro com esse CPF encontrado</p>
+<% end %>
 <div>
   <h5>CPFs Bloqueados:</h5>
   <% if @blockeds.any? %>

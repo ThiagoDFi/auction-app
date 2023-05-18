@@ -1,6 +1,7 @@
 class BidsController < ApplicationController
 
   before_action :check_user_and_admin, only: [:create]
+  before_action :chech_blocked_cpf, only: [:create]
 
   def create
     @auction_lot = AuctionLot.find(params[:auction_lot_id])
@@ -15,6 +16,15 @@ class BidsController < ApplicationController
   end
 
   private
+
+  def chech_blocked_cpf
+    cpf = current_user.registry_code
+    blocked = Blocked.find_by(registry_code: cpf)
+  
+    if blocked
+      redirect_to root_path, alert: 'Sua conta está suspensa.'
+    end
+  end
 
   def check_user_and_admin
     if !current_user.present?
