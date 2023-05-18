@@ -22,14 +22,14 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @product, notice: "Produto cadastrado com sucesso."
     else
-      flash.now[:notice] = "Produto não cadastado."
+      flash.now[:alert] = "Produto não cadastado."
       render 'new'
     end                                          
   end
 
   def check_admin
     unless current_user.present? && current_user.admin?
-      flash[:notice] = "Apenas usuarios admin podem criar um produto"
+      flash[:alert] = "Apenas usuarios admin podem criar um produto"
       redirect_to root_path
     end
   end

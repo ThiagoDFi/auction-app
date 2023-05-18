@@ -1,6 +1,17 @@
 <div class="container custom-background">
   <h1 class="text-center">Lotes para Leilão</h1>
 
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
+
   <h2>Proximos Lotes</h2>
   <div class="row">
     <% @auction_lots_actives.each do |lot| %>

@@ -1,23 +1,58 @@
-<h3>Editando o lote "<%= @auction_lot.code %>" para leilão</h3>
+<div class="container">
+  <h3>Editando o lote "<%= @auction_lot.code %>" para leilão</h3>
 
-<%= form_with(model: @auction_lot) do | f |%>
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
 
-  <div>
-    <%= f.label :end_date, 'Data final do lote' %>
-    <%= f.date_field :end_date %>
-  </div>
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
 
-  <div>
-    <%= f.label :minimum_value, 'Valor minimo' %>
-    <%= f.number_field :minimum_value%>
-  </div>
+  <% if @auction_lot.errors.any? %>
+    <div class="alert alert-danger">
+      <p>Verifique os erros abaixo:</p>
+      <ul>
+        <% @auction_lot.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div>
-    <%= f.label :diff_value, 'Valor diferença de lance' %>
-    <%= f.number_field :diff_value %>
-  </div>
+  <%= form_with(model: @auction_lot, class: 'form') do |f| %>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="form-group">
+          <%= f.label :start_date, 'Data início do lote' %>
+          <%= f.date_field :start_date, class: 'form-control', size: 10, style: "width: 150px;" %>
+        </div>
 
-  <div>
-    <%= f.submit 'Enviar' %>
-  </div>
-<% end %>
+        <div class="form-group">
+          <%= f.label :end_date, 'Data final do lote' %>
+          <%= f.date_field :end_date, class: 'form-control', size: 10, style: "width: 150px;" %>
+        </div>
+      </div>
+
+      <div class="col-sm-5" style="margin-top: 25px;">
+        <div class="form-group">
+          <%= f.label :minimum_value, 'Valor mínimo' %>
+          <%= f.number_field :minimum_value, class: 'form-control', size: 10, style: "width: 150px;" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :diff_value, 'Valor diferença de lance' %>
+          <%= f.number_field :diff_value, class: 'form-control', size: 10, style: "width: 150px;" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Enviar', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

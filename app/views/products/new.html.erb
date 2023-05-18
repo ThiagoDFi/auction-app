@@ -1,6 +1,17 @@
 <div class="container mt-4 bg-light p-4">
   <h1>Criação de Pedido</h1>
 
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
+
   <% if(@product.errors.any?) %>
     <div class="alert alert-danger">
       <p>Verifique os erros abaixo:</p>

@@ -1,5 +1,15 @@
 <div class="card mx-auto" style="max-width: 400px;">
   <div class="card-header">
+    <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger" role="alert">
+      <%= alert %>
+    </div>
+  <% end %>
     <h2 class="text-center">Log in</h2>
   </div>
   <div class="card-body">

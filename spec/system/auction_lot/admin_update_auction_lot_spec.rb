@@ -23,7 +23,7 @@ describe 'Admin edita um lote de leilão' do
     find("#auction_lot_1", text: "Ver Detalhes").click
     click_on 'Editar'
     fill_in 'Data final do lote', with: 8.months.from_now
-    fill_in 'Valor minimo', with: 4000
+    fill_in 'Valor mínimo', with: 4000
     fill_in 'Valor diferença de lance', with: 500
     click_on 'Enviar'
 

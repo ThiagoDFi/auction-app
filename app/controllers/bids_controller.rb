@@ -10,7 +10,7 @@ class BidsController < ApplicationController
     if @bid.save
       redirect_to @auction_lot, notice: "Lance enviado com sucesso!"
     else
-      redirect_to @auction_lot, notice: @bid.errors.full_messages.join(', ')
+      redirect_to @auction_lot, alert: @bid.errors.full_messages.join(', ')
     end
   end
 
@@ -18,9 +18,9 @@ class BidsController < ApplicationController
 
   def check_user_and_admin
     if !current_user.present?
-      return redirect_to new_user_session_path, notice: "Para realizar um lance você precisa estar logado"
+      return redirect_to new_user_session_path, alert: "Para realizar um lance você precisa estar logado"
     elsif current_user.admin?
-      return redirect_to root_path, notice: "Administradores não podem realizar lances"
+      return redirect_to root_path, alert: "Administradores não podem realizar lances"
     end
   end
 end

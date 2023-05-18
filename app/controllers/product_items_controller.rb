@@ -32,7 +32,7 @@ class ProductItemsController < ApplicationController
 
   def check_admin
     unless current_user.present? && current_user.admin?
-      flash[:notice] = "Apenas usuarios admin tem acesso a essa ação"
+      flash[:alert] = "Apenas usuarios admin tem acesso a essa ação"
       return redirect_to root_path
     end
   end
