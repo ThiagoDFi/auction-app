@@ -27,6 +27,25 @@ class ProductsController < ApplicationController
     end                                          
   end
 
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    product_params = params.require(:product).permit(:name, :description, :photo, :weight,
+                                                     :width, :height, :depth, :photo, 
+                                                     :category)
+    if @product.update(product_params)
+      redirect_to @product, notice: "Produto atualizado com sucesso."
+    else
+      flash[:alert] = "Falha ao atualizar o produto."
+      render "edit"
+    end
+  end
+
+  private
+
   def check_admin
     unless current_user.present? && current_user.admin?
       flash[:alert] = "Apenas usuarios admin podem criar um produto"

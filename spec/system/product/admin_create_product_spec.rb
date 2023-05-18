@@ -13,7 +13,7 @@ describe 'Admin cadastra um produto' do
     click_on '+ Novo Produto'
     
     #Assert
-    expect(page).to have_content "Criação de Pedido"
+    expect(page).to have_content "Criação de Produto"
     expect(page).to have_content "Nome"
     expect(page).to have_content "Descrição"
     expect(page).to have_content "Foto"
