@@ -1,5 +1,4 @@
 <div class="container custom-background">
-  <h1 class="text-center">Lotes para Leilão</h1>
 
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -11,8 +10,9 @@
       <%= alert %>
     </div>
   <% end %>
+  <h2>Lotes para Leilão:</h2>
 
-  <h2>Proximos Lotes</h2>
+  <h3 class="text-center">Proximos Lotes</h3>
   <div class="row">
     <% @auction_lots_actives.each do |lot| %>
       <% lot.product_items.each_with_index do |pdi, index|%>
@@ -38,7 +38,7 @@
     <% end %>
   </div>
 
-  <h2>Lotes Iniciados</h2>
+  <h3 class="text-center">Lotes Iniciados</h3>
   <div class="row">
     <% @auction_lots_actives.each do |lot| %>
       <% lot.product_items.each_with_index do |pdi, index|%>

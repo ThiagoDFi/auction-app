@@ -1,11 +1,13 @@
-<h1>Novo Item para o Lote <%= @auction_lot.code%></h1>
+<div class="container">
+  <h2 class="text-center">Novo Item para o Lote <%= @auction_lot.code %></h2>
 
-<%= form_with(model: [@auction_lot, @product_item]) do |f|%>
+  <%= form_with(model: [@auction_lot, @product_item], class: 'mt-4') do |f| %>
 
-  <div>
-    <%= f.label :product_id, 'Produtos'%>
-    <%= f.collection_select :product_id, @products, :id, :name %>
-  </div>
+    <div class="form-group">
+      <%= f.label :product_id, 'Produtos' %>
+      <%= f.collection_select :product_id, @products, :id, :name, { prompt: 'Selecione um produto' }, class: 'form-control', style: "width: 280px;" %>
+    </div>
 
-  <%= f.submit 'Gravar'%>
+    <%= f.submit 'Gravar', class: 'btn btn-primary mt-3' %>
   <% end %>
+</div>

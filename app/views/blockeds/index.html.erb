@@ -1,4 +1,5 @@
-<h3>Painel de restrições</h3>
+<div class="container">
+<h3 class="text-center">Painel de restrições</h3>
 
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -6,11 +7,15 @@
     </div>
   <% end %>
 
-  <%= form_with(url: blockeds_path, method: :get) do |f|%>
-    <%= f.text_field :query, placeholder: 'Busque um CPF' %>
-    <%= f.submit 'Procurar' %>
-  <% end %>
-<% if @registry_code.any? %>
+<%= form_with(model: @block) do |f| %>
+  <div>
+    <%= f.label :registry_code, "Numero do CPF" %>
+    <%= f.text_field :registry_code %>
+  </div>
+  <%= f.submit "Bloquear", class:"btn btn-dark mb-3" %>
+<% end %>
+
+
   <% @registry_code.each do |doc|%>
     <dl>
       <dt>Numero do documento: </dt>
@@ -21,9 +26,6 @@
         <%= form.submit "Bloquear", class: "btn btn-info mt-3" %>
       <% end %>
   <% end %>
-<% else %>
-  <p>Nenhum registro com esse CPF encontrado</p>
-<% end %>
 <div>
   <h5>CPFs Bloqueados:</h5>
   <% if @blockeds.any? %>
@@ -39,4 +41,5 @@
   <% else %>
     <p>Nenhum CPF bloqueado até o momento.</p>
   <% end %>
+</div>
 </div>

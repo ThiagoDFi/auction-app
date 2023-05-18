@@ -1,4 +1,5 @@
-<h3>Validação de resultados dos leilões</h3>
+<div class="container">
+<h3 class="text-center">Validação de resultados dos leilões</h3>
 
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -11,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= link_to 'Voltar', root_path, class: "btn btn-secondary mb-5 ms-5" %>
+  <%= link_to 'Voltar', root_path, class: "btn btn-secondary mb-5" %>
 
 <div class="row">
   <% @auction_lots.each do |lot| %>
@@ -47,4 +48,5 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>

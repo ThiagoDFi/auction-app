@@ -8,8 +8,8 @@ class BlockedsController < ApplicationController
   end
 
   def create
-    @registry_code = params[:registry_code]
-    @blocked = Blocked.new(registry_code: @registry_code)
+    blocked_param = params.require(:blocked).permit(:registry_code)
+    @blocked = Blocked.new(blocked_param)
     if @blocked.save
       redirect_to blockeds_path, notice: "CPF bloqueado com sucesso!"
     else

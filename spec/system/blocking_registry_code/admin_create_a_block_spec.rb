@@ -13,8 +13,7 @@ describe 'Admin cadastra um bloqueio' do
     login_as(admin)
     visit root_path
     click_on "Restrições"
-    fill_in 'Busque um CPF', with: '93224124024'
-    click_on 'Procurar'
+    fill_in 'Numero do CPF', with: '93224124024'
     click_on 'Bloquear'
 
     #Assert
