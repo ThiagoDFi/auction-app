@@ -17,7 +17,19 @@ class User < ApplicationRecord
   # validates :registry_code, cpf: { message: 'Inválido'}
 
   before_validation :set_admin
+  before_validation :check_blocked_cpf, on: :create
 
+
+  private
+
+  def check_blocked_cpf
+    cpf = self.registry_code
+    blocked = Blocked.find_by(registry_code: cpf)
+
+    if blocked
+      self.errors.add(:registry_code, 'está suspenso.')
+    end
+  end
 
   def set_admin
     if self.email.ends_with?('@leilaodogalpao.com.br')

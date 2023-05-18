@@ -44,4 +44,23 @@ describe 'Usuário se autentica' do
     expect(page).not_to have_button 'Sair'
     expect(page).not_to have_content 'thiago@email.com'
   end
+  it 'e esta com a conta suspensa' do
+    #Arrange
+     user = User.create!(name: 'Thiago', registry_code: '52125951002', email: 'thiago@email.com',
+                  password: 'password', role: 'customer') 
+
+    blocked = Blocked.create!(registry_code: '52125951002')
+
+    #Act
+    visit root_path
+    click_on 'Entrar'
+    within('#login-form') do
+      fill_in 'E-mail', with: 'thiago@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
+
+    #Assert
+    expect(page).to have_content "Sua conta está suspensa."
+  end
 end

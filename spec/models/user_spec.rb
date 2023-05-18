@@ -88,5 +88,19 @@ RSpec.describe User, type: :model do
       expect(result).to be true
       expect(user.role).to eq 'customer'
     end
+    it 'adiciona erroe quando CPF é suspenso' do
+      #Arrange
+      block = Blocked.create!(registry_code: '78451222457')
+
+      user = User.new(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
+      registry_code: '78451222457')
+
+      #Act
+      user.valid?
+      result = user.errors.include?(:registry_code)
+
+      #Assert
+      expect(result).to be true
+    end
   end
 end
