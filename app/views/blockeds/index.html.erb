@@ -1,0 +1,39 @@
+<h3>Painel de restrições</h3>
+
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <%= form_with(url: blockeds_path, method: :get) do |f|%>
+    <%= f.text_field :query, placeholder: 'Busque um CPF' %>
+    <%= f.submit 'Procurar' %>
+  <% end %>
+
+  <% @registry_code.each do |doc|%>
+    <dl>
+      <dt>Numero do documento: </dt>
+      <dd><%= doc.registry_code%></dd>
+    </dl>
+      <%= form_with url: blockeds_path, method: :post do |form| %>
+        <%= form.hidden_field :registry_code, value: doc.registry_code %>
+        <%= form.submit "Bloquear", class: "btn btn-info mt-3" %>
+      <% end %>
+  <% end %>
+<div>
+  <h5>CPFs Bloqueados:</h5>
+  <% if @blockeds.any? %>
+    <% @blockeds.each do |block| %>
+      <dl>
+        <dt>Numero: </dt>
+        <dd><%= block.registry_code %></dd>
+      <dl>
+      <%= form_tag(blocked_path(block), method: :delete) do %>
+        <%= submit_tag 'Remover', class: 'btn btn-danger', id: dom_id(block) %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>Nenhum CPF bloqueado até o momento.</p>
+  <% end %>
+</div>

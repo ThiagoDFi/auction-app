@@ -15,6 +15,9 @@
         <li class="nav-item">
           <%= link_to 'Resultados', results_auction_lots_path, class: 'nav-link text-truncate' %>
         </li>
+        <li class="nav-item">
+          <%= link_to 'Restrições', blockeds_path, class: 'nav-link text-truncate' %>
+        </li>
       </ul>
       <%= form_with(url: search_auction_lots_path, method: :get) do |f|%>
         <%= f.text_field :query, placeholder: 'Busque um produto' %>
