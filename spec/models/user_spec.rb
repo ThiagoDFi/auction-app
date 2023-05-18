@@ -88,7 +88,7 @@ RSpec.describe User, type: :model do
       expect(result).to be true
       expect(user.role).to eq 'customer'
     end
-    it 'adiciona erroe quando CPF é suspenso' do
+    it 'adiciona error quando CPF é suspenso' do
       #Arrange
       block = Blocked.create!(registry_code: '78451222457')
 
