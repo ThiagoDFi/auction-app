@@ -118,7 +118,28 @@ Acesse a aplicação em seu navegador através do endereço http://localhost:300
 
 ## Como rodar os testes
 
-Para executar os testes automatizados da aplicação entre no diretorio da aplicação e execute o comando abaixo
+Para executar os testes automatizados da aplicação entre no diretorio da aplicação e execute os comandos abaixo:
+
+Testes de Sistema:
+
+```
+$ rails spec:system
+```
+
+Testes de Request:
+
+```
+$ rails spec:requests
+
+```
+
+Testes de Models:
+
+```
+$ rails spec:models
+```
+
+Para rodar todos os testes juntos:
 
 ```
 $ rspec
