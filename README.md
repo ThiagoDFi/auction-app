@@ -44,10 +44,6 @@
 
 ![Layout](https://github.com/ThiagoDFi/auction-app/blob/main/app/assets/images/site_leilao.png)
 
-... 
-
-Se ainda não houver deploy, insira capturas de tela da aplicação ou gifs
-
 ## Pré-requisitos
 
 
