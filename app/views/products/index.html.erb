@@ -1,13 +1,14 @@
 <div class="container mt-4">
   <h1 class="text-center">Lista de Produtos</h1>
 
-    <div class="mb-4">
-      <div class="text-end mb-3">
-        <%= link_to '+ Novo Produto', new_product_path, class: "btn btn-primary" %>
+  <div class="mb-4">
+    <div class="text-end mb-3">
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Voltar', root_path, class: "btn btn-secondary" %>
+        <%= link_to '+ Novo Produto', new_product_path, class: "btn btn-primary me-2" %>
       </div>
     </div>
-
-  <%= link_to 'Voltar', root_path,  class: "btn btn-secondary mb-5 ms-5"%>
+  </div>
 
   <% if @products.any? %>
     <div class="row row-cols-1 row-cols-md-3 g-4">

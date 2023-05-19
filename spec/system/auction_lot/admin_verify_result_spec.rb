@@ -35,22 +35,18 @@ describe 'admin verifica resultados' do
     product2.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
     product2.save! 
 
-    auction_lot = AuctionLot.new(start_date: 2.days.ago,
+    auction_lot = AuctionLot.create!(start_date: 2.days.ago, end_date: 2.days.from_now,
                                      minimum_value: 1000, diff_value: 300, code: 'GRU123456',
                                      admin_record: 'pedro@leilaodogalpao.com.br',
                                      admin_approve: 'admin@leilaodogalpao.com.br',
                                      status: :active)
     
-    travel_to 2.days.ago do
-
-      auction_lot.end_date = 2.days.from_now
-      auction_lot.save!
-
       prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
       prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
 
       bid1 = Bid.create!(amount: 1500, auction_lot: auction_lot, user: user)
-    end
+
+      auction_lot.update(end_date: 2.days.ago)
 
     #Act
     login_as(admin)
@@ -84,22 +80,19 @@ describe 'admin verifica resultados' do
     product2.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
     product2.save! 
 
-    auction_lot = AuctionLot.new(start_date: 2.days.ago,
+    auction_lot = AuctionLot.create(start_date: 2.days.ago, end_date: 2.days.from_now,
                      minimum_value: 1000, diff_value: 300, code: 'GRU123456',
                      admin_record: 'pedro@leilaodogalpao.com.br',
                      admin_approve: 'admin@leilaodogalpao.com.br',
                      status: :active)
 
-    travel_to 2.days.ago do
-
-      auction_lot.end_date = 2.days.from_now
-      auction_lot.save!
-
       prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
       prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
 
       bid1 = Bid.create!(amount: 1500, auction_lot: auction_lot, user: user)
-    end
+
+      auction_lot.update(end_date: 2.days.ago)
+
     #Act
     login_as(admin)
     visit root_path
@@ -209,18 +202,17 @@ describe 'admin verifica resultados' do
     product2.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'play5.jpeg')), filename: 'play5.jpeg', content_type: 'image/jpeg')
     product2.save! 
 
-    travel_to 2.days.ago do
-      auction_lot = AuctionLot.create!(start_date: 2.days.ago, end_date: 2.days.from_now,
-                                       minimum_value: 1000, diff_value: 300, code: 'GRU123456',
-                                       admin_record: 'pedro@leilaodogalpao.com.br',
-                                       admin_approve: 'admin@leilaodogalpao.com.br',
-                                       status: :active)
+    auction_lot = AuctionLot.create!(start_date: 2.days.ago, end_date: 2.days.from_now,
+                                     minimum_value: 1000, diff_value: 300, code: 'GRU123456',
+                                     admin_record: 'pedro@leilaodogalpao.com.br',
+                                     admin_approve: 'admin@leilaodogalpao.com.br',
+                                     status: :active)
+    prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
+    prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
 
-      prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
-      prod2 = ProductItem.create!(product: product2, auction_lot: auction_lot)
-
-      bid1 = Bid.create!(amount: 1500, auction_lot: auction_lot, user: user)
-    end
+    bid1 = Bid.create!(amount: 1500, auction_lot: auction_lot, user: user)
+    
+    auction_lot.update(end_date: 2.days.ago)
 
     #Act
     login_as(admin)
