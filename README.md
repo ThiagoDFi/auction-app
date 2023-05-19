@@ -22,6 +22,22 @@
 
 <p align="justify">
   O projeto é uma aplicação web com Ruby on Rails que serve para conectar o público com itens que são abandonados, permitindo que esses itens sejam comercializados novamente. O formato escolhido foi o de leilão de itens. Este projeto faz parte da primeira etapa de treinamento do TreinaDev.
+
+  Ao executar o comando de seed, serão criados os seguintes registros no banco de dados:
+
+- 2 usuários administradores.
+- 2 usuários comuns.
+- 15 produtos.
+- 2 lotes de leilão ativos que ainda não iniciaram.
+- 2 lotes ativos que já iniciaram.
+- 2 lotes ativos que estão prestes a ser encerrados e tiveram lance.
+- 2 lotes que podem ser cancelados por não terem nenhum lance.
+- 2 lotes aguardando aprovação.
+- 3 produtos que não foram associados a nenhum lote.
+
+Esses registros fornecem uma base inicial para o funcionamento do sistema, permitindo testar diferentes funcionalidades, como a criação de leilões, lances, cancelamento de lotes e associação de produtos.
+
+É importante observar que essas informações são fictícias e foram criadas exclusivamente para fins de desenvolvimento e teste do projeto.
 </p>
 
 ## Funcionalidades
