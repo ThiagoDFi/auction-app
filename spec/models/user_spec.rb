@@ -90,10 +90,10 @@ RSpec.describe User, type: :model do
     end
     it 'adiciona error quando CPF é suspenso' do
       #Arrange
-      block = Blocked.create!(registry_code: '78451222457')
+      block = Blocked.create!(registry_code: '67674540014')
 
       user = User.new(name: 'Pedro', email: 'pedro@leilaodogalpao.com.br', password: 'password',
-      registry_code: '78451222457')
+      registry_code: '67674540014')
 
       #Act
       user.valid?

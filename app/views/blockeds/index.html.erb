@@ -14,8 +14,7 @@
   </div>
   <%= f.submit "Bloquear", class:"btn btn-dark mb-3" %>
 <% end %>
-
-
+  <% if !@registry_code.nil? %>
   <% @registry_code.each do |doc|%>
     <dl>
       <dt>Numero do documento: </dt>
@@ -40,6 +39,10 @@
     <% end %>
   <% else %>
     <p>Nenhum CPF bloqueado até o momento.</p>
+  <% end %>
+  <% else %>
+    <P> CPF Invalido <P>
+     <%= link_to 'Voltar', blockeds_path, class:"btn btn-secondary" %>
   <% end %>
 </div>
 </div>

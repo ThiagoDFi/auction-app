@@ -12,10 +12,11 @@ class BlockedsController < ApplicationController
   def create
     blocked_param = params.require(:blocked).permit(:registry_code)
     @blocked = Blocked.new(blocked_param)
-    if @blocked.save
+  
+    if @blocked.valid? && @blocked.save
       redirect_to blockeds_path, notice: "CPF bloqueado com sucesso!"
     else
-      flash[:alert] = "Não foi possivel bloquear o CPF"
+      flash[:alert] = "CPF inválido. Não foi possível bloquear o CPF."
       render "index"
     end
   end
