@@ -1,3 +1,5 @@
+ActiveRecord::Base.transaction do
+
 # Criação de usuarios ADM
 
 thiagoadm = User.create!(name: 'Thiago', email: 'thiago@leilaodogalpao.com.br', password: 'password',
@@ -212,10 +214,4 @@ auction_lot10 = AuctionLot.create!(start_date: 40.days.ago, end_date: 2.days.ago
 proditem12 = ProductItem.create!(product: product12, auction_lot: auction_lot10)
 
 product12.update(status: 1)
-
-
-
-
-
-
-
+end
