@@ -10,14 +10,20 @@ class BlockedsController < ApplicationController
   end
 
   def create
-    blocked_param = params.require(:blocked).permit(:registry_code)
-    @blocked = Blocked.new(blocked_param)
+    if params[:blocked].present?
+      blocked_params = params.require(:blocked).permit(:registry_code)
+      @blocked = Blocked.new(blocked_params)
   
-    if @blocked.valid? && @blocked.save
-      redirect_to blockeds_path, notice: "CPF bloqueado com sucesso!"
+      if @blocked.valid? && @blocked.save
+        # Lógica para quando o objeto Blocked for válido e for salvo com sucesso
+        redirect_to blockeds_path, notice: 'Blocked criado com sucesso.'
+      else
+        # Lógica para quando o objeto Blocked for inválido ou não for salvo
+        render :index
+      end
     else
-      flash[:alert] = "CPF inválido. Não foi possível bloquear o CPF."
-      render "index"
+      # Lógica para lidar com o parâmetro bloqueado ausente ou vazio
+      redirect_to blockeds_path
     end
   end
 
