@@ -130,7 +130,6 @@ Testes de Request:
 
 ```
 $ rails spec:requests
-
 ```
 
 Testes de Models:
