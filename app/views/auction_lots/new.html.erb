@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h3>Criando lote para leilão</h3>
 
-  <%= link_to 'Voltar', root_path, class: "btn btn-secondary mr-2 mt-3 mr-auto mb-4" %>
+  <%= link_to 'Voltar', auction_lots_path, class: "btn btn-secondary mr-2 mt-3 mr-auto mb-4" %>
 
 
   <% if notice %>
@@ -36,17 +36,18 @@
       <%= f.number_field :minimum_value, class: "form-control", size: 10, style: "width: 150px;" %>
     </div>
     <div class="col-md-6 mt-3">
-      <%= f.label :end_date, class: "form-label" %>
-      <%= f.date_field :end_date, class: "form-control", size: 10, style: "width: 150px;" %>
+      <%= f.label :start_date, class: "form-label" %>
+      <%= f.date_field :start_date, class: "form-control", size: 10, style: "width: 150px;" %>
     </div>
     <div class="col-md-6 mt-3">
       <%= f.label :diff_value, class: "form-label" %>
       <%= f.number_field :diff_value, class: "form-control", size: 10, style: "width: 150px;" %>
     </div>
     <div class="col-md-6 mt-3">
-      <%= f.label :start_date, class: "form-label" %>
-      <%= f.date_field :start_date, class: "form-control", size: 10, style: "width: 150px;" %>
+      <%= f.label :end_date, class: "form-label" %>
+      <%= f.date_field :end_date, class: "form-control", size: 10, style: "width: 150px;" %>
     </div>
+
 
     <div class="col-12 mt-3">
       <%= f.submit 'Enviar', class: "btn btn-primary" %>

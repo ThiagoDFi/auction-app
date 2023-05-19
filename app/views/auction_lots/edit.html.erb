@@ -1,6 +1,9 @@
 <div class="container">
   <h3>Editando o lote "<%= @auction_lot.code %>" para leilão</h3>
 
+  <%= link_to 'Voltar', auction_lots_path, class: "btn btn-secondary mr-2 mt-3 mr-auto mb-4" %>
+
+
   <% if notice %>
     <div class="alert alert-success" role="alert">
       <%= notice %>
