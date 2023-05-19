@@ -50,11 +50,15 @@ Esses registros fornecem uma base inicial para o funcionamento do sistema, permi
 
 :heavy_check_mark: Criação de conta para usuários regulares/visitantes
 
-:heavy_check_mark: Busca por produtos
+:heavy_check_mark: Busca por produtos em lotes existentes
 
 :heavy_check_mark: Detalhes de produtos
 
 :heavy_check_mark: Fazer uma oferta (se ainda possível)
+
+:heavy_check_mark: Marcar Lote como favorito
+
+:heavy_check_mark: Bloquear um CPF
 
 ## Layout :dash:
 
