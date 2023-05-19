@@ -40,9 +40,9 @@
 
 :heavy_check_mark: Fazer uma oferta (se ainda possível)
 
-## Layout ou Deploy da Aplicação :dash:
+## Layout :dash:
 
-> Link do deploy da aplicação. Exemplo com netlify: https://certificates-for-everyone-womakerscode.netlify.app/
+![Layout](https://github.com/ThiagoDFi/auction-app/blob/main/app/assets/images/site_leilao.png)
 
 ... 
 
