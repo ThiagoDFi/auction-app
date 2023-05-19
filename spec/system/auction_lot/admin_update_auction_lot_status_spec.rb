@@ -122,4 +122,32 @@ describe 'Admin revisa o lote de leilão' do
     expect(page).to have_content "O lote não pode ser aprovado sem ter ao menos um produto vinculados."
     expect(page).to have_content "Aguardando aprovação"
   end
+  it 'ao aprovar não consegue mais remover o product_item' do
+    #Arrange
+    admin = User.create!(name: 'admin', email: 'admin@leilaodogalpao.com.br', password: 'password',
+    registry_code: '27858256084', role: "admin")
+
+    product1 = Product.new(name: 'Tv 40', description: 'Tv de ultima geração LED 4K',
+    weight: 80, width: 3, height: 60, depth: 5, category: 'Tecnologia', status: :inactive)
+
+    product1.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'iphone.jpeg')), filename: 'iphone.jpeg', content_type: 'image/jpeg')
+    product1.save!
+
+    auction_lot = AuctionLot.create!(start_date: Date.today, end_date: 2.months.from_now,
+                    minimum_value: 1000, diff_value: 300, code: 'GRU123456',
+                    admin_record: 'pedro@leilaodogalpao.com.br',
+                    admin_approve: 'admin@leilaodogalpao.com.br',
+                    status: :active)
+
+    prod1 = ProductItem.create!(product: product1, auction_lot: auction_lot)
+
+    #Act
+    login_as(admin)
+    visit root_path
+    find("#auction_lot_1", text: "Ver Detalhes").click
+
+    #Assert
+    expect(page).to have_content "Categoria: Tecnologia"
+    expect(page).not_to have_content "Remover"
+  end
 end

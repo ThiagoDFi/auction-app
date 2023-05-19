@@ -25,9 +25,14 @@ class ProductItemsController < ApplicationController
   def destroy
     @auction_lot = AuctionLot.find(params[:auction_lot_id])
     @product_item = @auction_lot.product_items.find(params[:id])
-    @product_item.destroy
-    @product_item.product.active!
-    redirect_to @auction_lot, notice: 'Item removido com sucesso.'
+  
+    if @auction_lot.active?
+      redirect_to @auction_lot, alert: 'Não é possível remover o item de um leilão ativo.'
+    else
+      @product_item.destroy
+      @product_item.product.active!
+      redirect_to @auction_lot, notice: 'Item removido com sucesso.'
+    end
   end
 
   def check_admin
