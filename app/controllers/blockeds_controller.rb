@@ -1,5 +1,7 @@
 class BlockedsController < ApplicationController
 
+  before_action :check_admin
+
   def index
     @block = Blocked.new
     @blockeds = Blocked.all
@@ -22,5 +24,14 @@ class BlockedsController < ApplicationController
     @blocked = Blocked.find(params[:id])
     @blocked.destroy
     redirect_to blockeds_path, notice: "O CPF foi desbloqueado com sucesso."
+  end
+
+  private
+
+  def check_admin
+    unless current_user.present? && current_user.admin?
+      flash[:alert] = "Apenas usuarios admin tem acesso a essa ação"
+      return redirect_to root_path
+    end
   end
 end

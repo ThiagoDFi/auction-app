@@ -118,8 +118,6 @@ O cliente por sua vez possui suas ações limitadas a realizar lances em lotes d
 
 :memo: Dúvidas sobre um lote
 
-:memo: Bloqueio de CPF 
-
 
 ## Autor
 
