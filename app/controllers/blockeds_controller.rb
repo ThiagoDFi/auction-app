@@ -15,14 +15,11 @@ class BlockedsController < ApplicationController
       @blocked = Blocked.new(blocked_params)
   
       if @blocked.valid? && @blocked.save
-        # Lógica para quando o objeto Blocked for válido e for salvo com sucesso
         redirect_to blockeds_path, notice: 'Blocked criado com sucesso.'
       else
-        # Lógica para quando o objeto Blocked for inválido ou não for salvo
         render :index
       end
     else
-      # Lógica para lidar com o parâmetro bloqueado ausente ou vazio
       redirect_to blockeds_path
     end
   end
