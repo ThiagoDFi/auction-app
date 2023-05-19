@@ -138,6 +138,12 @@ Testes de Models:
 $ rails spec:models
 ```
 
+Testes de Helpers:
+
+```
+$ rails spec:helpers
+```
+
 Para rodar todos os testes juntos:
 
 ```
